@@ -8,6 +8,15 @@ const ScheduleSchema = new Schema({
   event: { type: String },
 });
 
+const doctorsData = new Schema({
+     expirence:{type:Number},
+     education:{type:String},
+     fees:{type:Number},
+     title:{type:String},
+     description:{type:String},
+     isAvailable:{type:Boolean , default:true},
+})
+
 const UserSchema = new Schema(
   {
     firstName: { type: String, required: true },
@@ -18,6 +27,7 @@ const UserSchema = new Schema(
     isDeleted: { type: Boolean, default: false },
     role: { type: String, enum: ["doctor", "patient"], default: "patient" },
     schedule: [ScheduleSchema], // Embed the ScheduleSchema as an array
+    doctorsData:[doctorsData]
   },
   { timestamps: true }
 );

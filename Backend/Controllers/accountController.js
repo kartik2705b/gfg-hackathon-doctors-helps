@@ -17,7 +17,7 @@ const ERRORS = {
 
 const registerUser = async (req, res) => {
   try {
-    const { firstName, lastName, emailId, phoneNo, password, role } = req.body;
+    const { firstName, lastName, emailId, phoneNo, password, role , doctorsData} = req.body;
 
     const existingUser = await User.findOne({
       $or: [{ emailId }, { phoneNo }],
@@ -37,6 +37,7 @@ const registerUser = async (req, res) => {
       emailId: emailId,
       password: hash,
       role: role,
+      doctorsData:doctorsData
     });
 
     await user.save();

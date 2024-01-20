@@ -22,8 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 
 const Auth = require("./Middleware/Authorization");
 const AccountRoute = require("./Routes/accountRoute");
+const DoctorMapping = require("./Routes/doctorRoute")
 
 app.use("/api/v1", AccountRoute);
+app.use("/api/v1" ,Auth ,DoctorMapping );
 
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
