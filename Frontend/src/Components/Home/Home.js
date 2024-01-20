@@ -27,9 +27,9 @@ const Home = (props) => {
 
   return (
     <div className="home">
-      <div className="body-div">
-        <div className="flex-box">
-          <div className="left-div">
+      <div>
+        <div>
+          <div>
             <div className="contents">
               <h1>
                 <b>Welcome Friends</b>
@@ -39,7 +39,6 @@ const Home = (props) => {
               </h3>
               <div className="start-meet">
                 <Link
-                  className="home-btn"
                   to="join"
                   onClick={() => {
                     setNewMeet(true);
@@ -70,27 +69,6 @@ const Home = (props) => {
                   Join Meeting
                 </button>
               </div>
-              <div className="features">
-                <h1>Features</h1>
-                <div className="grid-div">
-                  <DuoIcon />
-                  <p>1:1 Video chat</p>
-                </div>
-                <div className="grid-div">
-                  <SurroundSoundIcon />
-                  <p>Live Editor for interview</p>
-                </div>
-                <div className="grid-div">
-                  <EventNoteIcon />
-                  <p>Notes</p>
-                </div>
-                <div className="grid-div">
-                  <ChatIcon />
-                  <p>Real time Chat</p>
-                </div>
-              </div>
-              <img src={homeIcon1} alt="" className="chat-img" />
-              <img src={noteIcon} alt="" className="note-img" />
             </div>
           </div>
           <div className="right-div">
