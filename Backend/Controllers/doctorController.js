@@ -91,10 +91,32 @@ const getDoctorRoomID = async(req , res)=>{
       }
 };
 
+const updateDoctorStatus = async (req , res)=>{
+    try{
+        const _id = req.user;
+
+        const doctor = await User.findById(_id);
+
+        // console.log(doctor)
+
+        doctor.doctorsData[0].isAvailable = !doctor.doctorsData[0].isAvailable;
+        
+        await doctor.save();
+
+        return res.status(200).json({message:"success" , status:true , doctor:doctor})
+
+    }catch (e) {
+        return res
+          .status(400)
+          .json({ message: ERRORS.BAD_REQUEST, error: e.message, status: false });
+      }
+}
+
 
 module.exports = {
     setDoctorMapping,
     removeDoctorMapping,
     findMappedDoctors,
     getDoctorRoomID,
+    updateDoctorStatus,
 }
