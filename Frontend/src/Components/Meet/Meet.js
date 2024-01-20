@@ -8,7 +8,6 @@ import './Meet.css';
 import homeIcon1 from '../../assets/video-call.png';
 import noteIcon from '../../assets/note2.png';
 import Spinner from '../../common/Spinner';
-import Navbar from '../Navbar/Navbar';
 import saveAs from 'file-saver';
 import { pdfExporter } from 'quill-to-pdf';
 import { message } from 'antd';
@@ -105,7 +104,6 @@ const Meet = (props) => {
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
-        <Navbar />
         <div className='video-div'>
           {' '}
           <div

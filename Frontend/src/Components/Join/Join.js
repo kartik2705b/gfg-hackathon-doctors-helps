@@ -4,7 +4,6 @@ import './Join.css';
 import homeIcon from '../../assets/video-call.png';
 import { message } from 'antd';
 import Spinner from '../../common/Spinner';
-import Navbar from '../Navbar/Navbar';
 
 const Join = (props) => {
   const {
@@ -43,7 +42,6 @@ const Join = (props) => {
 
   return (
     <>
-      <Navbar />
       <div className='join-page'>
         <div>
           <div className='video-div'>
