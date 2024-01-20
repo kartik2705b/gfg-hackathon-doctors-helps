@@ -1,4 +1,8 @@
 const app = require('express')();
+const express =require('express');
+const dotenv = require('dotenv');
+dotenv.config();
+const mongoose = require("mongoose");
 const cors = require('cors');
 const server = require('http').createServer(app);
 const PORT = process.env.PORT || 7000;
@@ -8,8 +12,18 @@ const io = require('socket.io')(server, {
     methods: ['GET', 'POST'],
   },
 });
+const API = process.env.DATABASE_URL;
+
+mongoose.set("strictQuery", false);
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+const Auth = require("./Middleware/Authorization");
+const AccountRoute = require("./Routes/accountRoute");
+
+app.use("/api/v1", AccountRoute);
 
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
@@ -53,6 +67,14 @@ app.get('/', (req, res) => {
   res.send('Server is running');
 });
 
-server.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
-});
+// server.listen(PORT, () => {
+//   console.log(`Server is running at port ${PORT}`);
+// });
+
+async function main() {
+  console.log(API )
+  await mongoose.connect(API);
+  console.log("connected to database");
+  server.listen(PORT, () => console.log(`Server is live at PORT => ${PORT}`));
+}
+main();
