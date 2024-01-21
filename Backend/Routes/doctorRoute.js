@@ -3,7 +3,7 @@ const router = express.Router();
 const doctorMapping = require("../Controllers/doctorController");
 
 router.post("/setMapping", doctorMapping.setDoctorMapping);
-router.delete("/removeMapping/:mappingId" , doctorMapping.removeDoctorMapping);
+router.delete("/removeMapping/:roomId" , doctorMapping.removeDoctorMapping);
 router.get("/getMappedDoctors" , doctorMapping.findMappedDoctors);
 router.get("/getDoctorRoomId/:doctorId" , doctorMapping.getDoctorRoomID);
 router.put("/updateStatus" , doctorMapping.updateDoctorStatus );
