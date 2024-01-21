@@ -89,3 +89,41 @@ export const getDoctorRoomid = async (doctorid) => {
     });
   return response;
 };
+
+export const removeMapping = async (roomId) => {
+  const response = axios
+    .delete(`${BACKEND_URL}/api/v1/removeMapping/${roomId}`, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+      };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+  return response;
+};
+
+export const updateStatus = async () => {
+  const response = axios
+    .put(`${BACKEND_URL}/api/v1/updateStatus`, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+      };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+  return response;
+};

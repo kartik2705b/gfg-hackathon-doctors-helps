@@ -4,7 +4,7 @@ import "./Join.css";
 import homeIcon from "../../assets/video-call.png";
 import { message } from "antd";
 import Spinner from "../../common/Spinner";
-import { setMappingAPI } from "../../API/apis";
+import { setMappingAPI, updateStatus } from "../../API/apis";
 
 const Join = (props) => {
   const {
@@ -43,6 +43,11 @@ const Join = (props) => {
       setMappingAPI(me)
         .then((res) => {
           console.log("set mapping");
+        })
+        .then(() => {
+          updateStatus()
+            .then((res1) => console.log("updated status"))
+            .catch((err1) => console.log(err1));
         })
         .catch((err) => console.log(err));
     }
