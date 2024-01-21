@@ -26,11 +26,11 @@ const handleLogin = async(e)=>{
   toast.error(response.message)
  }
 
- if(localStorage.getItem('role') === 'patient'){
-  window.location.href = "/"
- }else{
-  window.location.href = "/"
- }
+//  if(localStorage.getItem('role') === 'patient'){
+//   window.location.href = "/"
+//  }else{
+//   window.location.href = "/"
+//  }
 }
 
   return (
