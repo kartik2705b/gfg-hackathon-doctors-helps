@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useRef, useParams } from 'react';
-import { SocketContext } from '../../SocketContext';
-import './Join.css';
-import homeIcon from '../../assets/video-call.png';
-import { message } from 'antd';
-import Spinner from '../../common/Spinner';
+import React, { useContext, useEffect, useRef, useParams } from "react";
+import { SocketContext } from "../../SocketContext";
+import "./Join.css";
+import homeIcon from "../../assets/video-call.png";
+import { message } from "antd";
+import Spinner from "../../common/Spinner";
+import { setMappingAPI } from "../../API/apis";
 
 const Join = (props) => {
   const {
+    me,
     callAccepted,
     name,
     setName,
@@ -16,13 +18,15 @@ const Join = (props) => {
     meetingCode,
     setMeetingCode,
     newMeet,
+    whoAccessing,
+    setWhoAccessing,
   } = useContext(SocketContext);
 
   const myPreviewVideo = useRef();
 
   useEffect(() => {
     if (!newMeet && meetingCode.length === 0) {
-      props.history.push('/');
+      props.history.push("/");
       window.location.reload();
       return;
     }
@@ -34,22 +38,31 @@ const Join = (props) => {
         setStream(res);
         myPreviewVideo.current.srcObject = res;
       });
+
+    if (whoAccessing === "doctor") {
+      setMappingAPI(me)
+        .then((res) => {
+          console.log("set mapping");
+        })
+        .catch((err) => console.log(err));
+    }
+    console.log("my id", me, whoAccessing);
   }, []);
 
   useEffect(() => {
-    if (callAccepted) props.history.push('meet');
+    if (callAccepted) props.history.push("meet");
   }, [callAccepted]);
 
   return (
     <>
-      <div className='join-page'>
+      <div className="join-page">
         <div>
-          <div className='video-div'>
+          <div className="video-div">
             {stream ? (
               <video
-                width='250'
-                height='140'
-                src=''
+                width="250"
+                height="140"
+                src=""
                 ref={myPreviewVideo}
                 autoPlay
                 muted
@@ -61,33 +74,33 @@ const Join = (props) => {
           {stream && (
             <>
               <input
-                type='text'
-                placeholder='Enter your name'
+                type="text"
+                placeholder="Enter your name"
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
               />
-              <div className='join-btns-div'>
+              <div className="join-btns-div">
                 {newMeet ? (
                   <button
-                    className='btn'
+                    className="btn"
                     onClick={() => {
                       if (name.trim().length === 0) {
-                        message.error('Please enter your name');
+                        message.error("Please enter your name");
                         return;
                       }
-                      props.history.push('meet');
+                      props.history.push("meet");
                     }}
                   >
                     Start
                   </button>
                 ) : (
                   <button
-                    className='btn'
+                    className="btn"
                     onClick={() => {
                       if (name.trim().length === 0) {
-                        message.error('Please enter your name');
+                        message.error("Please enter your name");
                         return;
                       }
 
@@ -98,10 +111,10 @@ const Join = (props) => {
                   </button>
                 )}
                 <button
-                  className='btn'
+                  className="btn"
                   onClick={() => {
-                    setMeetingCode('');
-                    props.history.push('/');
+                    setMeetingCode("");
+                    props.history.push("/");
                     window.location.reload();
                   }}
                 >

@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { getDoctorRoomid, getMappedDoctors } from "../API/apis";
+import { SocketContext } from "../SocketContext";
 
-const Doctors = () => {
+const Doctors = (props) => {
+  const [doctors, setDoctors] = useState([]);
+  const [roomIds, setRoomIds] = useState([]);
+  const { meetingCode, setMeetingCode, setNewMeet } = useContext(SocketContext);
+
+  useEffect(() => {
+    getMappedDoctors()
+      .then((res) => {
+        // setDoctors()
+        setDoctors([...res.doctors]);
+        console.log("doctors", res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <div className="p-10">
@@ -33,30 +49,37 @@ const Doctors = () => {
               </tr>
             </thead>
             <tbody>
-              {Array(6)
-                .fill(1)
-                .map((doctor) => (
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              {doctors.map((doctor) => (
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {doctor?.firstName}
+                  </th>
+                  <td class="px-6 py-4">{doctor?.doctorsData[0]?.expirence}</td>
+                  <td class="px-6 py-4">{doctor?.doctorsData[0]?.education}</td>
+                  <td class="px-6 py-4">{doctor?.doctorsData[0]?.fees}</td>
+                  <td class="px-6 py-4">{doctor?.doctorsData[0]?.title}</td>
+                  <td class="px-6 py-4">
+                    <button
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      onClick={() => {
+                        getDoctorRoomid(doctor._id)
+                          .then((res) => {
+                            setMeetingCode(res.mappedData);
+                            console.log("doctor id", res);
+                            props.history.push("join");
+                          })
+                          .catch((err) => console.log(err));
+                      }}
                     >
-                      Kartik Bhatia
-                    </th>
-                    <td class="px-6 py-4">10</td>
-                    <td class="px-6 py-4">M.B.B.S</td>
-                    <td class="px-6 py-4">Rs.2999</td>
-                    <td class="px-6 py-4">Haddio ka doctor</td>
-                    <td class="px-6 py-4">
-                      <a
-                        href="#"
-                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Pay and Talk
-                      </a>
-                    </td>
-                  </tr>
-                ))}
+                      Pay and Talk
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

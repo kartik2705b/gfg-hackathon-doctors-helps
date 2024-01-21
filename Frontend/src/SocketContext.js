@@ -1,23 +1,24 @@
-import { useEffect, createContext, useState, useRef } from 'react';
-import Peer from 'simple-peer';
-import { io } from 'socket.io-client';
-import { message } from 'antd';
-import { BACKEND_URL } from './constants';
+import { useEffect, createContext, useState, useRef } from "react";
+import Peer from "simple-peer";
+import { io } from "socket.io-client";
+import { message } from "antd";
+import { BACKEND_URL } from "./constants";
 const SocketContext = createContext();
 
 const socket = io(BACKEND_URL);
 
 const ContextProvider = ({ children }) => {
+  const [whoAccessing, setWhoAccessing] = useState("patient");
   const [socketState, setSocketState] = useState(socket);
-  const [me, setMe] = useState('');
+  const [me, setMe] = useState("");
   const [newMeet, setNewMeet] = useState(false);
   const [call, setCall] = useState({});
   const [stream, setStream] = useState(null);
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [otherUser, setOtherUser] = useState(null);
-  const [otherUserName, setOtherUserName] = useState('');
+  const [otherUserName, setOtherUserName] = useState("");
   const [myVideoStatus, setMyVideoStatus] = useState(true);
   const [userVideoStatus, setUserVideoStatus] = useState(true);
   const [myMicStatus, setMyMicStatus] = useState(false);
@@ -25,8 +26,8 @@ const ContextProvider = ({ children }) => {
   const [showEditor, setShowEditor] = useState(false);
   const [showChatBox, setShowChatBox] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [notes, setNotes] = useState('');
-  const [meetingCode, setMeetingCode] = useState('');
+  const [notes, setNotes] = useState("");
+  const [meetingCode, setMeetingCode] = useState("");
   const [notesOpen, setNotesOpen] = useState(false);
   const [quill, setQuill] = useState(null);
   const [otherUserStream, setOtherUserStream] = useState(null);
@@ -35,14 +36,14 @@ const ContextProvider = ({ children }) => {
   const connectionRef = useRef();
 
   useEffect(() => {
-    if (!navigator.onLine) alert('Connect to internet!');
+    if (!navigator.onLine) alert("Connect to internet!");
   }, [navigator]);
 
   useEffect(() => {
-    socket.on('me', (id) => {
+    socket.on("me", (id) => {
       setMe(id);
     });
-    socket.on('calluser', ({ from, name: callerName, signal }) => {
+    socket.on("calluser", ({ from, name: callerName, signal }) => {
       setCall({
         from,
         callerName,
@@ -52,17 +53,17 @@ const ContextProvider = ({ children }) => {
       setOtherUserName(callerName);
     });
 
-    socket.on('updateUserMedia', ({ type, mediaStatus }) => {
+    socket.on("updateUserMedia", ({ type, mediaStatus }) => {
       if (!type || !mediaStatus || !mediaStatus.length) {
         return;
       }
-      if (type === 'video') {
-        message.info(`User turned ${mediaStatus[0] ? 'on' : 'off'} his video`);
+      if (type === "video") {
+        message.info(`User turned ${mediaStatus[0] ? "on" : "off"} his video`);
         setUserVideoStatus(mediaStatus[0]);
         return;
       }
-      if (type === 'audio') {
-        message.info(`User ${mediaStatus[0] ? 'unmuted' : 'muted'} his mic`);
+      if (type === "audio") {
+        message.info(`User ${mediaStatus[0] ? "unmuted" : "muted"} his mic`);
         setUserMicStatus(mediaStatus[0]);
         return;
       }
@@ -70,9 +71,9 @@ const ContextProvider = ({ children }) => {
       setUserVideoStatus(mediaStatus[1]);
     });
 
-    socket.on('callended', () => {
+    socket.on("callended", () => {
       setCall(null);
-      message.info('User disconnected from call');
+      message.info("User disconnected from call");
       setCallAccepted(false);
       setCallEnded(true);
     });
@@ -83,18 +84,18 @@ const ContextProvider = ({ children }) => {
     setOtherUser(call.from);
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
-    peer.on('signal', (data) => {
-      socket.emit('answercall', {
+    peer.on("signal", (data) => {
+      socket.emit("answercall", {
         name,
         signal: data,
         to: call.from,
-        type: 'both',
+        type: "both",
         mediaStatus: [myMicStatus, myVideoStatus],
       });
       message.info(`${name} joined with you`);
     });
 
-    peer.on('stream', (currentStream) => {
+    peer.on("stream", (currentStream) => {
       setOtherUserStream(currentStream);
     });
 
@@ -104,27 +105,27 @@ const ContextProvider = ({ children }) => {
 
   const callUser = (id) => {
     message.info(
-      'Calling user... Please wait for the other user to accept the call'
+      "Calling user... Please wait for the other user to accept the call"
     );
     const peer = new Peer({ initiator: true, trickle: false, stream });
     setOtherUser(id);
 
-    peer.on('signal', (data) => {
-      socket.emit('calluser', {
+    peer.on("signal", (data) => {
+      socket.emit("calluser", {
         userToCall: id,
         from: me,
         signal: data,
         name,
       });
     });
-    peer.on('stream', (currentStream) => {
+    peer.on("stream", (currentStream) => {
       setOtherUserStream(currentStream);
     });
 
-    socket.on('callaccepted', (signal, userName) => {
-      socket.emit('updateMyMedia', {
+    socket.on("callaccepted", (signal, userName) => {
+      socket.emit("updateMyMedia", {
         data: {
-          type: 'both',
+          type: "both",
           mediaStatus: [myMicStatus, myVideoStatus],
         },
         userToUpdate: id,
@@ -139,18 +140,18 @@ const ContextProvider = ({ children }) => {
   };
 
   const endCall = (history) => {
-    socket.emit('callended', otherUser);
+    socket.emit("callended", otherUser);
     setCallEnded(true);
     setCallAccepted(false);
     if (connectionRef.current) connectionRef.current.destroy();
-    history.push('/');
-    message.success('Meet Ended');
+    history.push("/");
+    message.success("Meet Ended");
     window.location.reload();
   };
 
   const updateVideoStatus = () => {
-    socket.emit('updateMyMedia', {
-      data: { type: 'video', mediaStatus: [!myVideoStatus] },
+    socket.emit("updateMyMedia", {
+      data: { type: "video", mediaStatus: [!myVideoStatus] },
       userToUpdate: otherUser,
     });
 
@@ -159,8 +160,8 @@ const ContextProvider = ({ children }) => {
   };
 
   const updateMicStatus = () => {
-    socket.emit('updateMyMedia', {
-      data: { type: 'audio', mediaStatus: [!myMicStatus] },
+    socket.emit("updateMyMedia", {
+      data: { type: "audio", mediaStatus: [!myMicStatus] },
       userToUpdate: otherUser,
     });
 
@@ -171,6 +172,8 @@ const ContextProvider = ({ children }) => {
   return (
     <SocketContext.Provider
       value={{
+        whoAccessing,
+        setWhoAccessing,
         me,
         call,
         callAccepted,
