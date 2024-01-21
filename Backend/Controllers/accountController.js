@@ -64,6 +64,10 @@ const loginUser = async (req, res) => {
       ? await User.findOne({ emailId: username })
       : await User.findOne({ phoneNo: username });
 
+    if(!isUser){
+      return res.status(400).json({ message: ERRORS.NO_USER , status: false});
+    }
+
     if (isUser.isDeleted) {
       return res.status(400).json({ message: ERRORS.USER_ACCESS_REMOVED , status: false});
     }
