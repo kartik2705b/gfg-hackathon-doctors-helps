@@ -3,7 +3,7 @@ import Peer from "simple-peer";
 import { io } from "socket.io-client";
 import { message } from "antd";
 import { BACKEND_URL } from "./constants";
-import { removeMapping } from "./API/apis";
+import { removeMapping, updateStatus } from "./API/apis";
 const SocketContext = createContext();
 
 const socket = io(BACKEND_URL);
@@ -152,6 +152,7 @@ const ContextProvider = ({ children }) => {
         .catch((err) => console.log(err));
     }
 
+    await updateStatus()
     history.push("/");
 
     message.success("Meet Ended");
