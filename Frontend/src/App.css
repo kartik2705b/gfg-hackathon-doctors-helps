@@ -1,10 +1,10 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
+  background-color: aquamarine;
   /* font-family: 'Raleway', sans-serif; */
 }
 .editor::-webkit-scrollbar-track {
@@ -48,7 +48,7 @@ body{
 }
 
 .tooltip .tooltiptext::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   left: 50%;

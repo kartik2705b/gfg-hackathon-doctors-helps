@@ -4,7 +4,6 @@ import "./Home.css";
 import homeIcon from "../../assets/video-call.png";
 import homeIcon1 from "../../assets/home.png";
 import noteIcon from "../../assets/note2.png";
-import homeVideo from "../../assets/homeVideo1.mp4";
 import ChatIcon from "@material-ui/icons/Chat";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import SurroundSoundIcon from "@material-ui/icons/SurroundSound";
@@ -71,8 +70,8 @@ const Home = (props) => {
               </div>
             </div>
           </div>
-          <div className="right-div">
-            {/* <img src={homeIcon} alt='' /> */}
+          {/* <div className="right-div">
+            <img src={homeIcon} alt='' />
             <video
               src={homeVideo}
               id="video"
@@ -81,7 +80,7 @@ const Home = (props) => {
               muted
               loop
             ></video>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

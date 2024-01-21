@@ -145,8 +145,8 @@ export const Signup = () => {
     );
   };
   return (
-    <section class="bg-gray-50 dark:bg-gray-900 py-10 my-10">
-      <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section class="bg-gray-50 dark:bg-gray-900 ">
+      <div class="flex flex-col items-center justify-center px-6 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <form
             className="px-8 pt-6 pb-8 mb-4"
