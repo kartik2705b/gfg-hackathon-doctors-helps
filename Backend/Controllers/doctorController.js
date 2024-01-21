@@ -82,7 +82,7 @@ const getDoctorRoomID = async(req , res)=>{
         const doctorMappedData = await doctorMapping.find({doctorId})
        
 
-        return res.status(200).json({message:"success" , status:true , mappedData:doctorMappedData})
+        return res.status(200).json({message:"success" , status:true , mappedData:doctorMappedData[0].roomId})
 
     }catch (e) {
         return res

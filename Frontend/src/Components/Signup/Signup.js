@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import ToastContext from "../../context/toastContext";
+import { BACKEND_URL } from "../../constants";
 
 const signUpSchema = z
   .object({
@@ -25,6 +27,7 @@ const signUpSchema = z
   });
 
 export const Signup = () => {
+  const {toast} = useContext(ToastContext)
   const [selectedRole, setSelectedRole] = useState("patient");
   const [doctorsData, setDoctorInfo] = useState({
     experience: "",
@@ -50,19 +53,27 @@ export const Signup = () => {
       data.role = "patient";
     }
     console.log(data, "data");
-    const response = await fetch("http://localhost:9000/api/v1/register", {
+    const response = await fetch(`${BACKEND_URL}/api/v1/register`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    if (!response.ok) {
-      alert("Submitting form failed!");
+    }).then((responseBody) => responseBody.json())
+    if (!response.status) {
+      toast.error(response.message)
+      // alert("Submitting form failed!");
       return;
+    }else{
+      console.log(response)
+      toast.success(response.message);
+
+      setTimeout(()=>{
+        window.location.href = "/login"
+      },2000)
+      clearTimeout(()=>{})
+      return reset()
     }
-   
-    reset();
   };
 
   const doctorsFields = () => {

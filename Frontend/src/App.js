@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Signup } from "./Components/Signup/Signup";
 import Login from "./Login/Login";
 import Doctors from "./Doctors/Doctors";
+import { ToastContextProvider } from "./context/toastContext";
 
 function App() {
   useEffect(() => {
@@ -15,7 +16,9 @@ function App() {
   }, [navigator]);
 
   return (
+    <ToastContextProvider>
     <ContextProvider>
+   
       <Router>
         <Switch>
           <Route path="/" component={Signup} exact></Route>
@@ -27,7 +30,9 @@ function App() {
           <Route path="/join" component={Join}></Route>
         </Switch>
       </Router>
+    
     </ContextProvider>
+    </ToastContextProvider>
   );
 }
 

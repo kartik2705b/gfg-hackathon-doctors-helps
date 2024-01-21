@@ -58,18 +58,20 @@ const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    console.log(username , password)
+
     const isUser = isNaN(Number(username))
       ? await User.findOne({ emailId: username })
       : await User.findOne({ phoneNo: username });
 
     if (isUser.isDeleted) {
-      return res.status(400).json({ message: ERRORS.USER_ACCESS_REMOVED });
+      return res.status(400).json({ message: ERRORS.USER_ACCESS_REMOVED , status: false});
     }
 
     const isPasswordMatch = await bcrypt.compare(password, isUser.password);
 
     if (!isPasswordMatch) {
-      return res.status(401).json({ message: ERRORS.INVALID_CREDENTIALS });
+      return res.status(401).json({ message: ERRORS.INVALID_CREDENTIALS , status:false});
     }
 
     const token = jwt.sign(
@@ -84,11 +86,12 @@ const loginUser = async (req, res) => {
       message: `Welcome ${isUser.firstName}`,
       token: token,
       user: isUser,
+      status:true
     });
   } catch (e) {
     return res
       .status(500)
-      .json({ message: ERRORS.INTERNAL_ERROR, error: e.message });
+      .json({ message: ERRORS.INTERNAL_ERROR, error: e.message , status:false});
   }
 };
 
