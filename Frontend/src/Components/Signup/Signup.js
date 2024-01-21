@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import ToastContext from "../../context/toastContext";
 import { BACKEND_URL } from "../../constants";
+import { RegisterApi } from "../../API/apis";
 
 const signUpSchema = z
   .object({
@@ -15,7 +16,7 @@ const signUpSchema = z
     }),
     phoneNo: z.string().min(1, { message: "Phone Number is required" }),
     password: z
-      .string()   
+      .string()
       .min(6, { message: "Password must be atleast 6 characters" }),
     confirmPassword: z
       .string()
@@ -27,14 +28,14 @@ const signUpSchema = z
   });
 
 export const Signup = () => {
-  const {toast} = useContext(ToastContext)
+  const { toast } = useContext(ToastContext);
   const [selectedRole, setSelectedRole] = useState("patient");
   const [doctorsData, setDoctorInfo] = useState({
     experience: "",
     education: "",
     fees: "",
     title: "",
-    description: ""
+    description: "",
   });
   const {
     register,
@@ -53,26 +54,18 @@ export const Signup = () => {
       data.role = "patient";
     }
     console.log(data, "data");
-    const response = await fetch(`${BACKEND_URL}/api/v1/register`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((responseBody) => responseBody.json())
+    const response = await RegisterApi(data);
     if (!response.status) {
-      toast.error(response.message)
-      // alert("Submitting form failed!");
+      toast.error(response.message);
       return;
-    }else{
-      console.log(response)
+    } else {
+      console.log(response);
       toast.success(response.message);
-
-      setTimeout(()=>{
-        window.location.href = "/login"
-      },2000)
-      clearTimeout(()=>{})
-      return reset()
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 2000);
+      clearTimeout(() => {});
+      return reset();
     }
   };
 
@@ -330,7 +323,7 @@ export const Signup = () => {
               </div>
             </div>
             {selectedRole && <div>{doctorsFields()}</div>}
-          
+
             <div className="mb-6 text-center mt-4">
               <button
                 className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
@@ -353,7 +346,8 @@ export const Signup = () => {
                 className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
                 to="/login"
               >
-                Already have an account? <span className="font-bold">Login!</span> 
+                Already have an account?{" "}
+                <span className="font-bold">Login!</span>
               </Link>
             </div>
           </form>
