@@ -111,7 +111,7 @@ export const removeMapping = async (roomId) => {
 
 export const updateStatus = async () => {
   const response = axios
-    .put(`${BACKEND_URL}/api/v1/updateStatus`, {
+    .put(`${BACKEND_URL}/api/v1/updateStatus`, {},{
       headers: {
         Authorization: localStorage.getItem("token"),
       },
