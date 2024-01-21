@@ -140,15 +140,15 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
   };
 
-  const endCall = (history) => {
+  const endCall = async (history) => {
     socket.emit("callended", otherUser);
     setCallEnded(true);
     setCallAccepted(false);
     if (connectionRef.current) connectionRef.current.destroy();
 
     if (whoAccessing === "doctor") {
-      removeMapping(me)
-        .then((res) => console.log(res))
+    await removeMapping(me)
+        .then((res) => console.log("removed" ,res))
         .catch((err) => console.log(err));
     }
 
