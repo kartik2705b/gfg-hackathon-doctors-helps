@@ -120,10 +120,27 @@ const updateDoctorStatus = async (req, res) => {
   }
 };
 
+const getAllDoctors = async (req, res) => {
+  try {
+
+    const doctors = await Doctor.find();
+
+    return res
+      .status(200)
+      .json({ message: "success", status: true, doctor: doctors });
+  } catch (e) {
+    return res
+      .status(500)
+      .json({ message: ERRORS.INTERNAL_ERROR, error: e.message, status: false });
+  }
+};
+
+
 module.exports = {
   setDoctorMapping,
   removeDoctorMapping,
   findMappedDoctors,
   getDoctorRoomID,
   updateDoctorStatus,
+  getAllDoctors
 };
