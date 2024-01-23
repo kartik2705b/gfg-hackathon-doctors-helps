@@ -35,13 +35,11 @@ const Login = (props) => {
       const { user } = response;
       if (user.role === "doctor") {
         console.log("doctor accessing");
-        setNewMeet(true);
-        setWhoAccessing("doctor");
-        props.history.push("join");
+        props.history.push("doctordashboard");
       } else {
         console.log("patient accessing");
         setWhoAccessing("patient");
-        props.history.push("doctors");
+        props.history.push("patientdashboard");
       }
     } else {
       toast.error(response.message);

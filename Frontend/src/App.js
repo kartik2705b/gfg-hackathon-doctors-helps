@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Signup } from "./Components/Signup/Signup";
 import Login from "./Login/Login";
 import Doctors from "./Doctors/Doctors";
+import PatientDashboard from "./PatientDashboard/PatientDashboard";
+import DoctorDashboard from "./DoctorDashboard/DoctorDashboard";
 import { ToastContextProvider } from "./context/toastContext";
 
 function App() {
@@ -17,21 +19,29 @@ function App() {
 
   return (
     <ToastContextProvider>
-    <ContextProvider>
-   
-      <Router>
-        <Switch>
-          <Route path="/" component={Signup} exact></Route>
-          <Route path="/login" component={Login} exact></Route>
-          <Route path="/doctors" component={Doctors} exact></Route>
+      <ContextProvider>
+        <Router>
+          <Switch>
+            <Route path="/" component={Signup} exact></Route>
+            <Route path="/login" component={Login} exact></Route>
+            <Route path="/doctors" component={Doctors} exact></Route>
+            <Route
+              path="/patientdashboard"
+              component={PatientDashboard}
+              exact
+            ></Route>
+            <Route
+              path="/doctordashboard"
+              component={DoctorDashboard}
+              exact
+            ></Route>
 
-          <Route path="/home" component={Home} exact></Route>
-          <Route path="/meet" component={Meet}></Route>
-          <Route path="/join" component={Join}></Route>
-        </Switch>
-      </Router>
-    
-    </ContextProvider>
+            <Route path="/home" component={Home} exact></Route>
+            <Route path="/meet" component={Meet}></Route>
+            <Route path="/join" component={Join}></Route>
+          </Switch>
+        </Router>
+      </ContextProvider>
     </ToastContextProvider>
   );
 }
