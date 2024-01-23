@@ -106,6 +106,7 @@ const loginUser = async (req, res) => {
       message: `Welcome ${isUser.firstName}`,
       token: token,
       user: isUser,
+      name:`${isUser.firstName} ${isUser.lastName}`,
       status:true
     });
   } catch (e) {
