@@ -1,4 +1,4 @@
-const User = require("../Modals/userSchema");
+const Doctor = require("../Modals/doctorSchema")
 const dotenv = require("dotenv");
 const secret = process.env.SECRET;
 const doctorMapping = require("../Modals/doctorMappingSchema");
@@ -66,7 +66,7 @@ const findMappedDoctors = async (req, res) => {
     const doctorIDs = await doctorMapping.find().sort({ createdAt: -1 });
     const doctorIds = doctorIDs.map((item) => item.doctorId);
 
-    const doctors = await User.find({ _id: { $in: doctorIds } });
+    const doctors = await Doctor.find({ _id: { $in: doctorIds } });
 
     return res
       .status(200)
@@ -102,7 +102,7 @@ const updateDoctorStatus = async (req, res) => {
   try {
     const _id = req.user;
 
-    const doctor = await User.findById(_id);
+    const doctor = await Doctor.findById(_id);
 
     // console.log(doctor)
 
