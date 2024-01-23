@@ -7,6 +7,7 @@ export const LoginApi = async (payload) => {
     .then((res) => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.user.role);
+      localStorage.setItem("name", `${res.data.user.firstName} ${res.data.user.lastName}`)
       console.log("login res", res);
       return { message: res.data.message, status: true, user: res.data.user };
     })

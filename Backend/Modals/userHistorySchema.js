@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const userHistorySchema = new Schema(
   {
+   userId:{type: mongoose.Types.ObjectId, ref: "users" },
    doctorId:{type:String , required:true},
-   feesPaid:{type:String}
+   feesPaid:{type:Number}
   },
   { timestamps: true }
 );
