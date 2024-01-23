@@ -60,12 +60,12 @@ const Join = (props) => {
 
   return (
     <>
-      <div className="join-page">
+      <div className="flex item-center justify-center h-screen bg-[#F2F4EA]">
         <div>
-          <div className="video-div">
+          <div className="w-[350px] md:w-[700px] border-2 rounded border-green-700">
             {stream ? (
               <video
-                width="250"
+                width="700"
                 height="140"
                 src=""
                 ref={myPreviewVideo}
@@ -79,6 +79,7 @@ const Join = (props) => {
           {stream && (
             <>
               <input
+                className="bg-gray-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 mt-6"
                 type="text"
                 placeholder="Enter your name"
                 value={name}
@@ -86,10 +87,10 @@ const Join = (props) => {
                   setName(e.target.value);
                 }}
               />
-              <div className="join-btns-div">
+              <div className="flex item-center justify-between mt-6">
                 {newMeet ? (
                   <button
-                    className="btn"
+                    className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full"
                     onClick={() => {
                       if (name.trim().length === 0) {
                         message.error("Please enter your name");
@@ -102,7 +103,7 @@ const Join = (props) => {
                   </button>
                 ) : (
                   <button
-                    className="btn"
+                    className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full"
                     onClick={() => {
                       if (name.trim().length === 0) {
                         message.error("Please enter your name");
@@ -116,7 +117,7 @@ const Join = (props) => {
                   </button>
                 )}
                 <button
-                  className="btn"
+                  className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full"
                   onClick={() => {
                     setMeetingCode("");
                     props.history.push("/");
