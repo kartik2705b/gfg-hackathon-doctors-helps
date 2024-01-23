@@ -3,7 +3,7 @@ import Peer from "simple-peer";
 import { io } from "socket.io-client";
 import { message } from "antd";
 import { BACKEND_URL } from "./constants";
-import { removeMapping } from "./API/apis";
+import { removeMapping, updateStatus } from "./API/apis";
 const SocketContext = createContext();
 
 const socket = io(BACKEND_URL);
@@ -140,18 +140,19 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
   };
 
-  const endCall = (history) => {
+  const endCall = async (history) => {
     socket.emit("callended", otherUser);
     setCallEnded(true);
     setCallAccepted(false);
     if (connectionRef.current) connectionRef.current.destroy();
 
     if (whoAccessing === "doctor") {
-      removeMapping(me)
-        .then((res) => console.log(res))
+    await removeMapping(me)
+        .then((res) => console.log("removed" ,res))
         .catch((err) => console.log(err));
     }
 
+    await updateStatus()
     history.push("/");
 
     message.success("Meet Ended");
