@@ -115,7 +115,7 @@ const Login = (props) => {
               <p class="text-sm font-light text-gray-500 text-center">
                 Dont have an account?{" "}
                 <Link
-                  to="/"
+                  to="/signup"
                   className="font-medium text-green-600 hover:underline"
                 >
                   Signup here

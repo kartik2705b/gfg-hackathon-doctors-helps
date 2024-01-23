@@ -4,9 +4,9 @@ import flower from "../../assets/Flower.png";
 
 const Hero = () => {
   return (
-    <section class="bg-[#F2F4EA] h-screen">
-      <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div class="mr-auto place-self-center lg:col-span-7">
+    <section class="bg-[#F2F4EA] h-auto">
+      <div class="grid max-w-screen-xl px-4 py-8 mx-auto md:gap-8 xl:gap-0 md:py-16 md:grid-cols-12">
+        <div class="mr-auto place-self-center md:col-span-7">
           <h1 className="text-4xl md:text-8xl font-serif font-semibold">
             Healthcare <br />
             When All else{" "}
