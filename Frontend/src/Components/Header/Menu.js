@@ -36,31 +36,15 @@ const Menu = () => {
             <div class="font-medium  truncate">Jagadeeswar</div>
           </div>
           <ul
-            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            class="py-2 text-sm text-gray-700 dark:text-gray-200 mb-0"
             aria-labelledby="avatarButton"
           >
             <li>
               <a
                 href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                class="block px-4 py-2 hover:bg-gray-100  text-green-700"
               >
                 Dashboard
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Settings
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Earnings
               </a>
             </li>
           </ul>

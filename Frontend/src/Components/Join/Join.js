@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useParams } from "react";
 import { SocketContext } from "../../SocketContext";
-import "./Join.css";
 import homeIcon from "../../assets/video-call.png";
 import { message } from "antd";
 import Spinner from "../../common/Spinner";
@@ -62,7 +61,7 @@ const Join = (props) => {
     <>
       <div className="flex item-center justify-center h-screen bg-[#F2F4EA]">
         <div>
-          <div className="w-[350px] md:w-[700px] border-2 rounded border-green-700">
+          <div className="w-[350px] md:w-[700px] border-2 rounded border-green-700 mt-6">
             {stream ? (
               <video
                 width="700"
