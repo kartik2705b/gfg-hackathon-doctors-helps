@@ -1,4 +1,5 @@
 import React from "react";
+import Menu from "./Menu";
 
 const Header = () => {
   return (
@@ -16,12 +17,16 @@ const Header = () => {
             </span>
           </a>
           <div className="flex items-center">
-            <button
-              type="button"
-              class="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded-full border border-green-900 hover:bg-greem-900 hover:text-white-700"
-            >
-              Find Your Doctor
-            </button>
+            {false ? (
+              <button
+                type="button"
+                class="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded-full border border-green-900 hover:bg-greem-900 hover:text-white-700"
+              >
+                Log in
+              </button>
+            ) : (
+              <Menu />
+            )}
           </div>
         </div>
         <hr class="h-px mt-4 bg-green-700 border-1"></hr>

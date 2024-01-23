@@ -145,9 +145,13 @@ export const Signup = () => {
     );
   };
   return (
-    <section class="bg-gray-50 dark:bg-gray-900 ">
-      <div class="flex flex-col items-center justify-center px-6 mx-auto md:h-screen lg:py-0">
-        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <section
+      class={`bg-[#F2F4EA] ${
+        selectedRole === "doctor" ? "h-auto" : "h-screen"
+      }`}
+    >
+      <div class="flex flex-col items-center justify-center px-6 mx-auto  lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow dark:border mt-6 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <form
             className="px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit(onSubmit)}
@@ -161,7 +165,7 @@ export const Signup = () => {
                   First Name
                 </label>
                 <input
-                  className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border ${
+                  className={`w-full p-2.5 text-sm leading-tight text-gray-700 border ${
                     errors.firstName && "border-red-500"
                   } rounded appearance-none focus:outline-none focus:shadow-outline`}
                   id="firstName"
@@ -293,7 +297,7 @@ export const Signup = () => {
                   type="radio"
                   value="patient"
                   name="role"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="w-4 h-4 text-green-600 bg-gray-100 border-green-300 focus:ring-green-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   checked={selectedRole === "patient"}
                   onChange={() => setSelectedRole("patient")}
                 />
@@ -326,7 +330,7 @@ export const Signup = () => {
 
             <div className="mb-6 text-center mt-4">
               <button
-                className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                className="w-full px-4 py-2 font-bold text-white bg-green-700 rounded  focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Register Account
@@ -334,18 +338,7 @@ export const Signup = () => {
             </div>
             <hr className="mb-6 border-t" />
             <div className="text-center">
-              <a
-                className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                href="#test"
-              >
-                Forgot Password?
-              </a>
-            </div>
-            <div className="text-center">
-              <Link
-                className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                to="/login"
-              >
+              <Link className="inline-block text-sm text-green-500" to="/login">
                 Already have an account?{" "}
                 <span className="font-bold">Login!</span>
               </Link>

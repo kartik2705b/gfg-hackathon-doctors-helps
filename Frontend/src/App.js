@@ -22,9 +22,11 @@ function App() {
   return (
     <ToastContextProvider>
       <ContextProvider>
+        <Header />
         <Router>
           <Switch>
-            <Route path="/" component={Signup} exact></Route>
+            <Route path="/" component={Hero} exact></Route>
+            <Route path="/signup" component={Signup} exact></Route>
             <Route path="/login" component={Login} exact></Route>
             <Route path="/doctors" component={Doctors} exact></Route>
             <Route
