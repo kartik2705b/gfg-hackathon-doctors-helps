@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Menu = () => {
+  const [name, setName] = useState(null);
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => {
+    const nameT = localStorage.getItem("name");
+    if (nameT) {
+      setName(nameT);
+    }
+  }, []);
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -33,7 +41,7 @@ const Menu = () => {
           } bg-white divide-y divide-gray-100 rounded-lg shadow w-44  z-50`}
         >
           <div class="px-4 py-3 text-sm text-gray-900">
-            <div class="font-medium  truncate">Jagadeeswar</div>
+            <div class="font-medium  truncate">{name}</div>
           </div>
           <ul
             class="py-2 text-sm text-gray-700 dark:text-gray-200 mb-0"

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 
 const Header = () => {
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
   return (
     <header>
       <div className="flex item-center justify-center bg-[#1F4D36]">
@@ -17,7 +24,7 @@ const Header = () => {
             </span>
           </a>
           <div className="flex items-center">
-            {false ? (
+            {!token ? (
               <button
                 type="button"
                 class="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded-full border border-green-900 hover:bg-greem-900 hover:text-white-700"
