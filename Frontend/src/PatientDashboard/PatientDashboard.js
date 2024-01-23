@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../SocketContext";
+import { getPatientHistory } from "../API/apis";
 
 const PatientDashboard = (props) => {
   const [menu, setMenu] = useState("orderhistory");
+  const [patientHistory, setPatientHistory] = useState([]);
   const {
     meetingCode,
     setMeetingCode,
@@ -10,6 +12,16 @@ const PatientDashboard = (props) => {
     whoAccessing,
     setWhoAccessing,
   } = useContext(SocketContext);
+
+  useEffect(async () => {
+    try {
+      const res = await getPatientHistory();
+      console.log(res);
+      setPatientHistory([...res.history]);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <>
@@ -54,46 +66,29 @@ const PatientDashboard = (props) => {
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" class="px-6 py-3">
-                        Product name
+                        DoctorID
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Color
+                        Fees Paid
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Category
-                      </th>
-                      <th scope="col" class="px-6 py-3">
-                        Price
-                      </th>
-                      <th scope="col" class="px-6 py-3">
-                        Action
+                        Date
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {Array(8)
-                      .fill(1)
-                      .map(() => (
-                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                          <th
-                            scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                            Apple MacBook Pro 17"
-                          </th>
-                          <td class="px-6 py-4">Silver</td>
-                          <td class="px-6 py-4">Laptop</td>
-                          <td class="px-6 py-4">$2999</td>
-                          <td class="px-6 py-4">
-                            <a
-                              href="#"
-                              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                            >
-                              Edit
-                            </a>
-                          </td>
-                        </tr>
-                      ))}
+                    {patientHistory.map((history) => (
+                      <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <th
+                          scope="row"
+                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          {history.doctorId}
+                        </th>
+                        <td class="px-6 py-4">{history.feesPaid}</td>
+                        <td class="px-6 py-4">{history.createdAt}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

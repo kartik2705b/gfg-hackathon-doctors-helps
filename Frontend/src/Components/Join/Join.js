@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useParams } from "react";
 import { SocketContext } from "../../SocketContext";
-import "./Join.css";
+// import "./Join.css";
 import homeIcon from "../../assets/video-call.png";
 import { message } from "antd";
 import Spinner from "../../common/Spinner";

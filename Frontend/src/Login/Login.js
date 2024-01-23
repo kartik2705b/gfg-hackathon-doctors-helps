@@ -30,6 +30,7 @@ const Login = (props) => {
     e.preventDefault();
     console.log(data);
     const response = await LoginApi(data);
+    console.log("login res", response);
     if (response.status) {
       toast.success(response.message);
       const { user } = response;

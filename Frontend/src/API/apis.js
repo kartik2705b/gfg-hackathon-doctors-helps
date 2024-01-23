@@ -7,7 +7,10 @@ export const LoginApi = async (payload) => {
     .then((res) => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.user.role);
-      localStorage.setItem("name", `${res.data.user.firstName} ${res.data.user.lastName}`)
+      localStorage.setItem(
+        "name",
+        `${res.data.user.firstName} ${res.data.user.lastName}`
+      );
       console.log("login res", res);
       return { message: res.data.message, status: true, user: res.data.user };
     })
@@ -112,7 +115,30 @@ export const removeMapping = async (roomId) => {
 
 export const updateStatus = async () => {
   const response = axios
-    .put(`${BACKEND_URL}/api/v1/updateStatus`, {},{
+    .put(
+      `${BACKEND_URL}/api/v1/updateStatus`,
+      {},
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+      };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+  return response;
+};
+
+export const getPatientHistory = async () => {
+  const response = axios
+    .get(`${BACKEND_URL}/api/v1/user/history`, {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -121,6 +147,7 @@ export const updateStatus = async () => {
       return {
         message: res.data.message,
         status: true,
+        history: res.data.history,
       };
     })
     .catch((e) => {
