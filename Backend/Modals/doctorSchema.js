@@ -8,7 +8,17 @@ const ScheduleSchema = new Schema({
   event: { type: String },
 });
 
-const UserSchema = new Schema(
+const doctorsData = new Schema({
+     expirence:{type:Number},
+     education:{type:String},
+     fees:{type:Number},
+     title:{type:String},
+     description:{type:String},
+     isAvailable:{type:Boolean , default:true},
+})
+
+
+const DoctorSchema = new Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String },
@@ -18,11 +28,10 @@ const UserSchema = new Schema(
     isDeleted: { type: Boolean, default: false },
     role: { type: String, enum: ["doctor", "patient"], default: "patient" },
     schedule: [ScheduleSchema], // Embed the ScheduleSchema as an array
-    CartItems: { type: Array },
   },
   { timestamps: true }
 );
 
-const User = mongoose.model("Users", UserSchema);
+const Doctor = mongoose.model("Doctors", DoctorSchema);
 
-module.exports = User;
+module.exports = Doctor;

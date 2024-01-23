@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const { registerMail } = require("../MailTemplate/registerMail");
 const secret = process.env.SECRET;
+const Doctor = require("../Modals/doctorSchema");
 dotenv.config();
 
 const ERRORS = {
@@ -18,11 +19,19 @@ const ERRORS = {
 const registerUser = async (req, res) => {
   try {
     const { firstName, lastName, emailId, phoneNo, password, role , doctorsData} = req.body;
+    let isAccount = {};
 
-    const existingUser = await User.findOne({
+    isAccount = await User.findOne({
       $or: [{ emailId }, { phoneNo }],
     });
-    if (existingUser) {
+
+    if(!isAccount){
+    isAccount =  await Doctor.findOne({
+      $or: [{ emailId }, { phoneNo }],
+    });
+    }
+
+    if (isAccount) {
       return res
         .status(400)
         .json({ message: ERRORS.USER_EXISTS, status: false });
@@ -30,7 +39,7 @@ const registerUser = async (req, res) => {
 
     const hash = await bcrypt.hash(password, 10);
 
-    const user = new User({
+      let template = {
       firstName: firstName,
       lastName: lastName,
       phoneNo: phoneNo,
@@ -38,9 +47,16 @@ const registerUser = async (req, res) => {
       password: hash,
       role: role,
       doctorsData:doctorsData
-    });
+    };
 
-    await user.save();
+    if(role === "doctor"){
+      const doctor = new Doctor(template);
+      await doctor.save()
+    }else{
+      const user = new User(template);
+      await user.save();
+    }
+
     await registerMail(emailId);
 
     return res.status(200).json({
@@ -90,6 +106,7 @@ const loginUser = async (req, res) => {
       message: `Welcome ${isUser.firstName}`,
       token: token,
       user: isUser,
+      name:`${isUser.firstName} ${isUser.lastName}`,
       status:true
     });
   } catch (e) {

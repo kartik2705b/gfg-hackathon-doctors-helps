@@ -7,6 +7,7 @@ router.delete("/removeMapping/:roomId" , doctorMapping.removeDoctorMapping);
 router.get("/getMappedDoctors" , doctorMapping.findMappedDoctors);
 router.get("/getDoctorRoomId/:doctorId" , doctorMapping.getDoctorRoomID);
 router.put("/updateStatus" , doctorMapping.updateDoctorStatus );
+router.get("/doctors" , doctorMapping.getAllDoctors);
 // router.post("/login", userController.loginUser);
 
 module.exports = router;
