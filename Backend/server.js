@@ -23,11 +23,15 @@ app.use(express.urlencoded({ extended: false }));
 const Auth = require("./Middleware/Authorization");
 const AccountRoute = require("./Routes/accountRoute");
 const DoctorMapping = require("./Routes/doctorRoute");
-const Products = require("./Routes/productRoute")
+const Products = require("./Routes/productRoute");
+const OrderRoute = require("./Routes/orderRoute");
+const HistoryRoute = require("./Routes/historyRoute")
 
 app.use("/api/v1", AccountRoute);
+app.use("/api/v1" , Products);
 app.use("/api/v1" ,Auth ,DoctorMapping );
-app.use("/api/v1" , Products)
+app.use("/api/v1", Auth, OrderRoute);
+app.use("/api/v1" , Auth , HistoryRoute);
 
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
