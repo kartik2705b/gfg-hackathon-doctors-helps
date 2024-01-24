@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png"
 
 import Menu from "./Menu";
 
@@ -20,11 +21,11 @@ const Header = () => {
       </div>
       <nav className="bg-[#F2F4EA] border-gray-200 md:px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex justify-between items-center px-3 md:px-24">
-          <a href="/">
-            <span className="text-green-900 text-2xl font-semibold">
-              Doctor
-            </span>
+          <a href="/" className="flex justify-between items-center">
+            <img src={logo} height={70} width={70}/>
+            <h1 className="px-4 text-2xl font-bold text-[#1F4D36]">My Doctor</h1>
           </a>
+
           <div className="flex items-center">
             {!token ? (
               <a
