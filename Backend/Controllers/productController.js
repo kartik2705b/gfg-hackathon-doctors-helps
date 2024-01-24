@@ -124,6 +124,31 @@ const getProductBySearch = async(req, res)=>{
   }
 }
 
+const addProduct = async (req, res) => {
+  try {
+    const updateData = req.body.formData;
+
+    // Update the product fields based on the updateData object
+    const product = new Product({
+      title: updateData.title,
+      brand: updateData.brand,
+      images: updateData.images.split(","),
+      InStock: updateData.InStock,
+      category: updateData.category,
+      price: updateData.price,
+      description: updateData.description,
+    });
+
+    await product.save();
+
+    return res
+      .status(201)
+      .json({ message: "Product updated successfully", product: product });
+  } catch (e) {
+    return res.status(400).json({ message: ERRORS.BAD_REQUEST , error:e.message });
+  }
+};
+
 module.exports = {
   getProducts,
   getProductById,
@@ -131,4 +156,5 @@ module.exports = {
   getProductsByCategory,
   updateProductById,
   getProductBySearch,
+  addProduct
 };
