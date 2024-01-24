@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import Menu from "./Menu";
 
 const Header = () => {
@@ -25,12 +27,13 @@ const Header = () => {
           </a>
           <div className="flex items-center">
             {!token ? (
-              <button
+              <a
                 type="button"
+                href="/login"
                 class="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded-full border border-green-900 hover:bg-greem-900 hover:text-white-700"
               >
                 Log in
-              </button>
+              </a>
             ) : (
               <Menu />
             )}
