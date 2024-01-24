@@ -74,17 +74,26 @@ const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    console.log(username , password)
+    console.log(username , password);
 
-    const isUser = isNaN(Number(username))
+    let Account = {}
+
+     Account = isNaN(Number(username))
       ? await User.findOne({ emailId: username })
       : await User.findOne({ phoneNo: username });
+    
+      if(!Account){
+        Account = isNaN(Number(username))
+      ? await Doctor.findOne({ emailId: username })
+      : await Doctor.findOne({ phoneNo: username });
+      }
 
-    if(!isUser){
+
+    if(!Account){
       return res.status(400).json({ message: ERRORS.NO_USER , status: false});
     }
 
-    if (isUser.isDeleted) {
+    if (Account.isDeleted) {
       return res.status(400).json({ message: ERRORS.USER_ACCESS_REMOVED , status: false});
     }
 
@@ -97,16 +106,16 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60,
-        data: isUser._id,
+        data: Account._id,
       },
       secret
     );
 
     return res.status(200).json({
-      message: `Welcome ${isUser.firstName}`,
+      message: `Welcome ${Account.firstName}`,
       token: token,
-      user: isUser,
-      name:`${isUser.firstName} ${isUser.lastName}`,
+      user: Account,
+      name:`${Account.firstName} ${Account.lastName}`,
       status:true
     });
   } catch (e) {
