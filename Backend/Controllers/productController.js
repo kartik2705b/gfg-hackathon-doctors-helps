@@ -126,13 +126,13 @@ const getProductBySearch = async(req, res)=>{
 
 const addProduct = async (req, res) => {
   try {
-    const updateData = req.body.formData;
+    const updateData = req.body;
 
     // Update the product fields based on the updateData object
     const product = new Product({
       title: updateData.title,
       brand: updateData.brand,
-      images: updateData.images.split(","),
+      images: updateData.images,
       InStock: updateData.InStock,
       category: updateData.category,
       price: updateData.price,
@@ -149,6 +149,38 @@ const addProduct = async (req, res) => {
   }
 };
 
+const addProductsBulk = async(req , res)=>{
+  try{
+    const titles = ["Dolo","Sumo","TusQ-D","Avil","Sinarest"];
+    const brands = ["Manforce","TusQ","Cipla","ArvindoFarma","XYZ"];
+    const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNKMulhojVKjTbR1dqmIIHtEsJ-PS0gYcUPw&usqp=CAU","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfVmibpMaQH7VFSyikzsTUralPBVQcH5IhCQ&usqp=CAU","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4rxtVKQtjQ14gIB32FTKgG-6hvhXT0Z7XQ&usqp=CAU","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpiJuidRE1JVBMGrq8Ly89R3QBzdi5vQYNhg&usqp=CAU","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSke7Pke25Hr-fNQfAytjEEqm1u8ma5rPVFTA&usqp=CAU"];
+    const desc = ["This is desc","This is desc","This is desc","This is desc","This is desc",];
+
+    const products = [];
+
+    for(let i =0 ; i < 50 ; i++){
+      let temp = {
+        title: titles[Math.floor(Math.random()*5)],
+      brand: brands[Math.floor(Math.random()*5)],
+      images: images[Math.floor(Math.random()*5)],
+      InStock: Math.floor(Math.random()*50),
+      price: Math.floor(Math.random()*500),
+      description: desc[Math.floor(Math.random()*5)],
+      }
+      products.push(temp)
+    }
+for(let i = 0 ; i < products.length ; i++){
+  const product = new Product(products[i]);
+  await product.save()
+}
+
+return res.status(200).json({message:'created Products'})
+
+  }catch (e) {
+    return res.status(400).json({ message: ERRORS.BAD_REQUEST , error:e.message });
+  }
+}
+
 module.exports = {
   getProducts,
   getProductById,
@@ -156,5 +188,6 @@ module.exports = {
   getProductsByCategory,
   updateProductById,
   getProductBySearch,
-  addProduct
+  addProduct,
+  addProductsBulk
 };
