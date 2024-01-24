@@ -28,6 +28,7 @@ const DoctorSchema = new Schema(
     isDeleted: { type: Boolean, default: false },
     role: { type: String, enum: ["doctor", "patient"], default: "patient" },
     schedule: [ScheduleSchema], // Embed the ScheduleSchema as an array
+    doctorsData:[doctorsData]
   },
   { timestamps: true }
 );
