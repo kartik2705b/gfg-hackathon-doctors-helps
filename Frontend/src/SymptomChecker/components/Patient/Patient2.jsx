@@ -146,7 +146,7 @@ class Patient2 extends Component {
           <p> Select one answer in each row </p>
         </div>
         <div className="px-3 py-2 rounded-sm  my-3 border border-green-600 radioButtonDiv  ">
-          <h3 className="text-[15px] text-gray-800">I am overweight</h3>
+          <h3 className="text-[15px] text-gray-800 mb-0">I am overweight</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -193,7 +193,7 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="px-3 py-2 rounded-sm  my-3 border border-green-600 radioButtonDiv">
-          <h3 className="text-[15px] text-gray-800">I smoke cigarettes</h3>
+          <h3 className="text-[15px] text-gray-800 mb-0">I smoke cigarettes</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -240,7 +240,7 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="px-3 py-2  rounded-sm  my-3 border border-green-600 radioButtonDiv">
-          <h3 className="text-[15px] text-gray-800">
+          <h3 className="text-[15px] text-gray-800 mb-0">
             I have been recently injured
           </h3>
           <form className="flex space-x-3">
@@ -289,7 +289,9 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="px-3 py-2  rounded-sm  my-3 border border-green-600 radioButtonDiv">
-          <h3 className="text-[15px] text-gray-800">I have high cholesterol</h3>
+          <h3 className="text-[15px] text-gray-800 mb-0">
+            I have high cholesterol
+          </h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -336,7 +338,9 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="px-3 py-2 rounded-sm  my-3 border border-green-600 radioButtonDiv">
-          <h3 className="text-[15px] text-gray-800">I have hypertensionl</h3>
+          <h3 className="text-[15px] text-gray-800 mb-0">
+            I have hypertensionl
+          </h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -386,7 +390,7 @@ class Patient2 extends Component {
           </form>
         </div>
         <div className="px-3 py-2  rounded-sm  my-3 border border-green-600 radioButtonDiv">
-          <h3>I have diabetes</h3>
+          <h3 className="text-[15px] text-gray-800 mb-0">I have diabetes</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input

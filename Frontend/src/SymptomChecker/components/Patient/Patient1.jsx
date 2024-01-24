@@ -23,7 +23,7 @@ const Patient = ({ age, ageChange, male, female, gender }) => {
           />
         </form>
       </div>
-      <div id="Home" className="tablet:grid-col padding-x-2">
+      <div id="Home" className="tablet:grid-col padding-x-2 mt-8">
         <p className="text-xl">What is your Gender?</p>
         <form class="usa-form">
           <div class="usa-radio">
