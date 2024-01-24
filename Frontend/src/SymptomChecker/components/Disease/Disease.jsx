@@ -21,7 +21,7 @@ class Disease extends Component {
     );
     return filtered_list.length !== 0 ? (
       <div className="grid-row width-full DiseaseComponent">
-        <div className="col-12 tablet:grid-col-12 patientInfo">
+        <div className="col-12 tablet:grid-col-12 patientInfo text-center text-lg">
           <h3>Patient gender: {this.props.gender}</h3>
           <h3>Patient age: {this.props.age}</h3>
         </div>
@@ -37,7 +37,7 @@ class Disease extends Component {
           <h2>Diagnosis Report</h2>
           {filtered_list.map((key, id) => (
             <div
-              className="bg-white shadow-lg rounded-md px-3 py-1 my-5"
+              className="bg-white border border-green-600 rounded-md px-3 py-1 my-5"
               key={id}
             >
               <div className="display-flex flex-row flex-justify flex-wrap">

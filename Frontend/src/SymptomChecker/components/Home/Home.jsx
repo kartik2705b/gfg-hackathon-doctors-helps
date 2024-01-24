@@ -6,22 +6,22 @@ const Home = (props) => {
   return (
     <React.Fragment>
       <div id="Home" className="tablet:grid-col padding-x-2">
-        <p>
+        <p className="text-center text-lg md:text-xl my-3">
           Before using this symptom checker, please read carefully and accept
-          our Terms and Services:
+          our Terms and Services
         </p>
-        <ul>
-          <li>This checkup is not a diagnosis.</li>
-          <li>
+        <ul className="text-lg mt-8">
+          <p>This checkup is not a diagnosis.</p>
+          <p>
             This checkup is for informational purposes and is not a qualified
             medical opinion.
-          </li>
-          <li>
+          </p>
+          <p>
             Information that you provide is anonymous and not shared with
             anyone. We also do not store any information on our server.
-          </li>
+          </p>
         </ul>
-        <form class="usa-form TermsCheckbox">
+        <form class="usa-form TermsCheckbox my-5">
           <div class="usa-checkbox">
             <input
               checked={props.isChecked}
@@ -32,7 +32,7 @@ const Home = (props) => {
               name="historical-figures-1"
               value="truth"
             />
-            <label class="ml-2" for="truth">
+            <label class="ml-4 font-medium " for="truth">
               I agree to the terms and conditions
             </label>
           </div>

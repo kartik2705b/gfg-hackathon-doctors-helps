@@ -285,12 +285,12 @@ class SymptomHomePage extends Component {
           <div className="p-10">
             <div className="">
               <div className="">
-                <ul className="flex space-x-5">
+                <ul className="flex space-x-5 item-center justify-center">
                   <li
                     className={`${
                       current_page === "Home"
-                        ? "px-3 py-1 bg-green-700 text-white font-bold"
-                        : "px-3 py-1 bg-green-500 text-white font-bold"
+                        ? "px-3 py-2 rounded bg-green-700 text-white font-semibold"
+                        : "px-3 py-2 rounded bg-green-500 text-white font-semibold"
                     }`}
                   >
                     Welcome
@@ -298,10 +298,10 @@ class SymptomHomePage extends Component {
                   <li
                     className={`${
                       tab_progress === 50 &&
-                      "px-3 py-1 bg-green-700 text-white font-bold"
+                      "px-3 py-2 rounded bg-green-700 text-white font-semibold"
                     } ${tab_progress < 50 && "list"} ${
                       tab_progress > 50 &&
-                      "px-3 py-1 bg-green-500 text-white font-bold"
+                      "px-3 py-2 rounded bg-green-500 text-white font-semibold"
                     }`}
                   >
                     Patient
@@ -309,10 +309,10 @@ class SymptomHomePage extends Component {
                   <li
                     className={`${
                       tab_progress === 75 &&
-                      "px-3 py-1 bg-green-700 text-white font-bold"
+                      "px-3 py-2 rounded bg-green-700 text-white font-semibold"
                     } ${tab_progress < 75 && "list"} ${
                       tab_progress > 75 &&
-                      "px-3 py-1 bg-green-500 text-white font-bold"
+                      "px-3 py-2 rounded bg-green-500 text-white font-semibold"
                     }`}
                   >
                     Symptom
@@ -320,20 +320,17 @@ class SymptomHomePage extends Component {
                   <li
                     className={`${
                       tab_progress === 100 &&
-                      "px-3 py-1 bg-green-700 text-white font-bold"
+                      "px-3 py-2 rounded bg-green-700 text-white font-semibold"
                     } ${tab_progress < 100 && "list"} ${
                       tab_progress > 100 &&
-                      "px-3 py-1 bg-green-500 text-white font-bold"
+                      "px-3 py-2 rounded bg-green-500 text-white font-semibold"
                     }`}
                   >
                     Disease
                   </li>
                 </ul>
               </div>
-              <div
-                className="desktop:grid-col-10"
-                id="ContentDiv padding-bottom-3"
-              >
+              <div className="">
                 <div className="grid-row padding-bottom-4 shoPageSection">
                   {this.showPage()}
                 </div>
@@ -343,14 +340,14 @@ class SymptomHomePage extends Component {
                   <button
                     disabled={this.state.current_page === "Home"}
                     onClick={this.get_previous_page}
-                    className="px-3 py-1 bg-white border-2 border-sm "
+                    className="px-6 py-2 bg-green-600 border-2 border-sm text-white "
                   >
                     Back
                   </button>
                   <div className="flex-1"></div>
                   {/* {current_page === "Symptom" ? this.renderResetButton() : ""} */}
                   <button
-                    className={`px-3 py-1 bg-white border-2 border-sm  ${
+                    className={`px-6 py-2 bg-green-600 border-2 border-sm text-white  ${
                       button_is_disabled ||
                       patient_2_next_button_disabled ||
                       user_symptom_length === 0

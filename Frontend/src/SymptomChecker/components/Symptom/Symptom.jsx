@@ -153,7 +153,7 @@ class Symptom extends Component {
         <div className="col-12 tablet:grid-col-5">
           {/* <div className="grid-row"> */}
           <input
-            class="px-3 py-1 rounded-sm"
+            class="px-3 py-3 rounded-md w-full border border-green-600 "
             onKeyDown={this.keyDownEvent}
             onChange={this.getInputSymptoms}
             placeholder="Search Symptoms"
@@ -169,7 +169,6 @@ class Symptom extends Component {
               .map((key, id) => {
                 return (
                   <li key={id}>
-                    {/* {console.log(key, "key")} */}
                     <button
                       onClick={this.addSymptomButtonEvent.bind(this)}
                       value={key}
@@ -201,7 +200,7 @@ class Symptom extends Component {
         <div className="col-12 width-full display-flex flex-row flex-justify-start resetButton padding-left-2">
           <button
             onClick={this.on_click_reset_button}
-            className="usa-button usa-button--secondary"
+            className="bg-green-900 text-white w-full py-3 rounded flex item-center justify-center"
           >
             Reset
           </button>

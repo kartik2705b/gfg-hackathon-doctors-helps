@@ -1,17 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { SocketContext } from '../../SocketContext';
-import Editor from '../Editor/Editor';
-import Options from '../Options/Options';
-import MicIcon from '@material-ui/icons/Mic';
-import MicOffIcon from '@material-ui/icons/MicOff';
-import './Meet.css';
-import homeIcon1 from '../../assets/video-call.png';
-import noteIcon from '../../assets/note2.png';
-import Spinner from '../../common/Spinner';
-import saveAs from 'file-saver';
-import { pdfExporter } from 'quill-to-pdf';
-import { message } from 'antd';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import React, { useContext, useState, useEffect } from "react";
+import { SocketContext } from "../../SocketContext";
+import Editor from "../Editor/Editor";
+import Options from "../Options/Options";
+import MicIcon from "@material-ui/icons/Mic";
+import MicOffIcon from "@material-ui/icons/MicOff";
+import "./Meet.css";
+import homeIcon1 from "../../assets/video-call.png";
+import noteIcon from "../../assets/note2.png";
+import Spinner from "../../common/Spinner";
+import saveAs from "file-saver";
+import { pdfExporter } from "quill-to-pdf";
+import { message } from "antd";
+import GetAppIcon from "@material-ui/icons/GetApp";
 
 const Meet = (props) => {
   const {
@@ -45,7 +45,7 @@ const Meet = (props) => {
 
   useEffect(() => {
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
   }, []);
   // console.log(me,otherUser)
 
@@ -84,7 +84,7 @@ const Meet = (props) => {
   const downloadPdf = async () => {
     const delta = quill.getContents();
     const pdfAsBlob = await pdfExporter.generatePdf(delta);
-    message.success('Downloading your whiteboard');
+    message.success("Downloading your whiteboard");
     saveAs(pdfAsBlob, `Merge-whiteboard.pdf`);
   };
 
@@ -92,9 +92,9 @@ const Meet = (props) => {
     return (
       <div
         style={{
-          height: '100vh',
-          overflow: 'hidden',
-          backgroundColor: 'white',
+          height: "100vh",
+          overflow: "hidden",
+          backgroundColor: "white",
         }}
       >
         <Spinner starting />

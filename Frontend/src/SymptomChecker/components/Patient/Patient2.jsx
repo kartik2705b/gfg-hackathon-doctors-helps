@@ -139,14 +139,14 @@ class Patient2 extends Component {
     return (
       <div id="Patient2" className="tablet:grid-col padding-x-2">
         <div className="width-full flex-column flex-align-center">
-          <h2 style={{ marginBottom: "15px" }}>
+          <h2 style={{ marginBottom: "15px" }} className="text-lg">
             {" "}
             Please check all the statement below that applies you
           </h2>
           <p> Select one answer in each row </p>
         </div>
-        <div className="px-3 py-1 bg-white rounded-sm shadow-md my-3 radioButtonDiv ">
-          <h3>I am overweight</h3>
+        <div className="px-3 py-2 rounded-sm  my-3 border border-green-600 radioButtonDiv  ">
+          <h3 className="text-[15px] text-gray-800">I am overweight</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -158,7 +158,7 @@ class Patient2 extends Component {
                 value={"Yes"}
                 name="overweight"
               />
-              <label className="usa-radio__label" for="overweight_Yes">
+              <label className="usa-radio__label ml-2" for="overweight_Yes">
                 Yes
               </label>
             </div>
@@ -172,7 +172,7 @@ class Patient2 extends Component {
                 value={"No"}
                 name="overweight"
               />
-              <label className="usa-radio__label" for="overweight_No">
+              <label className="usa-radio__label ml-2" for="overweight_No">
                 No
               </label>
             </div>
@@ -186,14 +186,14 @@ class Patient2 extends Component {
                 value={"Patient doesn't know"}
                 name="overweight"
               />
-              <label className="usa-radio__label" for="overweight_doesno">
+              <label className="usa-radio__label ml-2" for="overweight_doesno">
                 I don't know
               </label>
             </div>
           </form>
         </div>
-        <div className="px-3 py-1 bg-white rounded-sm shadow-md my-3 radioButtonDiv">
-          <h3>I smoke cigarettes</h3>
+        <div className="px-3 py-2 rounded-sm  my-3 border border-green-600 radioButtonDiv">
+          <h3 className="text-[15px] text-gray-800">I smoke cigarettes</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -205,7 +205,7 @@ class Patient2 extends Component {
                 value={"Yes"}
                 name="cigarettes"
               />
-              <label className="usa-radio__label" for="cigarettes_yes">
+              <label className="usa-radio__label ml-2" for="cigarettes_yes">
                 Yes
               </label>
             </div>
@@ -219,7 +219,7 @@ class Patient2 extends Component {
                 value={"No"}
                 name="cigarettes"
               />
-              <label className="usa-radio__label" for="cigarettes_no">
+              <label className="usa-radio__label ml-2" for="cigarettes_no">
                 No
               </label>
             </div>
@@ -233,14 +233,16 @@ class Patient2 extends Component {
                 value={"Patient doesn't know"}
                 name="cigarettes"
               />
-              <label className="usa-radio__label" for="cigarettes_doesno">
+              <label className="usa-radio__label ml-2" for="cigarettes_doesno">
                 I don't know
               </label>
             </div>
           </form>
         </div>
-        <div className="px-3 py-1 bg-white rounded-sm shadow-md my-3 radioButtonDiv">
-          <h3>I have been recently injured</h3>
+        <div className="px-3 py-2  rounded-sm  my-3 border border-green-600 radioButtonDiv">
+          <h3 className="text-[15px] text-gray-800">
+            I have been recently injured
+          </h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -252,7 +254,7 @@ class Patient2 extends Component {
                 value={"Yes"}
                 name="injured"
               />
-              <label className="usa-radio__label" for="injured_yes">
+              <label className="usa-radio__label ml-2" for="injured_yes">
                 Yes
               </label>
             </div>
@@ -266,7 +268,7 @@ class Patient2 extends Component {
                 value={"No"}
                 name="injured"
               />
-              <label className="usa-radio__label" for="injured_no">
+              <label className="usa-radio__label ml-2" for="injured_no">
                 No
               </label>
             </div>
@@ -280,14 +282,14 @@ class Patient2 extends Component {
                 value={"Patient doesn't know"}
                 name="injured"
               />
-              <label className="usa-radio__label" for="injured_doesno">
+              <label className="usa-radio__label ml-2" for="injured_doesno">
                 I don't know
               </label>
             </div>
           </form>
         </div>
-        <div className="px-3 py-1 bg-white rounded-sm shadow-md my-3 radioButtonDiv">
-          <h3>I have high cholesterol</h3>
+        <div className="px-3 py-2  rounded-sm  my-3 border border-green-600 radioButtonDiv">
+          <h3 className="text-[15px] text-gray-800">I have high cholesterol</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -299,7 +301,7 @@ class Patient2 extends Component {
                 value={"Yes"}
                 name="cholesterol"
               />
-              <label className="usa-radio__label" for="cholesterol_yes">
+              <label className="usa-radio__label ml-2" for="cholesterol_yes">
                 Yes
               </label>
             </div>
@@ -313,7 +315,7 @@ class Patient2 extends Component {
                 value={"No"}
                 name="cholesterol"
               />
-              <label className="usa-radio__label" for="cholesterol_no">
+              <label className="usa-radio__label ml-2" for="cholesterol_no">
                 No
               </label>
             </div>
@@ -327,14 +329,14 @@ class Patient2 extends Component {
                 value={"Patient doesn't know"}
                 name="cholesterol"
               />
-              <label className="usa-radio__label" for="cholesterol_doesno">
+              <label className="usa-radio__label ml-2" for="cholesterol_doesno">
                 I don't know
               </label>
             </div>
           </form>
         </div>
-        <div className="px-3 py-1 bg-white rounded-sm shadow-md my-3 radioButtonDiv">
-          <h3>I have hypertensionl</h3>
+        <div className="px-3 py-2 rounded-sm  my-3 border border-green-600 radioButtonDiv">
+          <h3 className="text-[15px] text-gray-800">I have hypertensionl</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
               <input
@@ -346,7 +348,7 @@ class Patient2 extends Component {
                 value={"Yes"}
                 name="hypertensionl"
               />
-              <label className="usa-radio__label" for="hypertension_yes">
+              <label className="usa-radio__label ml-2" for="hypertension_yes">
                 Yes
               </label>
             </div>
@@ -360,7 +362,7 @@ class Patient2 extends Component {
                 value={"No"}
                 name="hypertensionl"
               />
-              <label className="usa-radio__label" for="hypertension_no">
+              <label className="usa-radio__label ml-2" for="hypertension_no">
                 No
               </label>
             </div>
@@ -374,13 +376,16 @@ class Patient2 extends Component {
                 value={"Patient doesn't know"}
                 name="hypertensionl"
               />
-              <label className="usa-radio__label" for="hypertension_doesno">
+              <label
+                className="usa-radio__label ml-2"
+                for="hypertension_doesno"
+              >
                 I don't know
               </label>
             </div>
           </form>
         </div>
-        <div className="px-3 py-1 bg-white rounded-sm shadow-md my-3 radioButtonDiv">
+        <div className="px-3 py-2  rounded-sm  my-3 border border-green-600 radioButtonDiv">
           <h3>I have diabetes</h3>
           <form className="flex space-x-3">
             <div className="usa-radio margin-x-1">
@@ -393,7 +398,7 @@ class Patient2 extends Component {
                 value={"Yes"}
                 name="diabetes"
               />
-              <label className="usa-radio__label" for="diabetes_yes">
+              <label className="usa-radio__label ml-2" for="diabetes_yes">
                 Yes
               </label>
             </div>
@@ -407,7 +412,7 @@ class Patient2 extends Component {
                 value={"No"}
                 name="diabetes"
               />
-              <label className="usa-radio__label" for="diabetes_no">
+              <label className="usa-radio__label ml-2" for="diabetes_no">
                 No
               </label>
             </div>
@@ -421,7 +426,7 @@ class Patient2 extends Component {
                 value={"Patient doesn't know"}
                 name="diabetes"
               />
-              <label className="usa-radio__label" for="diabetes_doesno">
+              <label className="usa-radio__label ml-2" for="diabetes_doesno">
                 I don't know
               </label>
             </div>
