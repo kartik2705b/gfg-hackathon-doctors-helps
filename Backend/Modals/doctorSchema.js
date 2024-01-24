@@ -14,7 +14,7 @@ const doctorsData = new Schema({
      fees:{type:Number},
      title:{type:String},
      description:{type:String},
-     isAvailable:{type:Boolean , default:true},
+     isAvailable:{type:Boolean , default:false},
 })
 
 
