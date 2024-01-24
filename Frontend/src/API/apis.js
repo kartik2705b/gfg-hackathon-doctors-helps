@@ -155,3 +155,69 @@ export const getPatientHistory = async () => {
     });
   return response;
 };
+
+export const createPatientHistory = async (doctorId, fees) => {
+  const response = axios
+    .post(
+      `${BACKEND_URL}/api/v1/create/user/history`,
+      {
+        id: doctorId,
+        fees: fees,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+    .then((res) => {
+      return { message: res.data.message, status: true };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+  return response;
+};
+
+export const getDoctorHistory = async () => {
+  const response = axios
+    .get(`${BACKEND_URL}/api/v1/doctor/history`, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+        history: res.data.history,
+      };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+  return response;
+};
+
+export const createDoctorHistory = async (patientId, fees) => {
+  const response = axios
+    .post(
+      `${BACKEND_URL}/api/v1/create/doctor/history`,
+      {
+        id: patientId,
+        fees: fees,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+    .then((res) => {
+      return { message: res.data.message, status: true };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+  return response;
+};

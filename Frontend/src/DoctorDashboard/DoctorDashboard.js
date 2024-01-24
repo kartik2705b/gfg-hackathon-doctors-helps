@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { SocketContext } from "../SocketContext";
+import { createDoctorHistory } from "../API/apis";
 
 const DoctorDashboard = (props) => {
   const [menu, setMenu] = useState("orderhistory");
@@ -16,7 +17,7 @@ const DoctorDashboard = (props) => {
       <div className="p-10">
         <h1 className="font-bold text-2xl">Doctor Dashboard</h1>
         <div className="flex space-x-5">
-          <button
+          {/* <button
             className={
               (menu === "history" ? "bg-green-500 text-white " : "bg-white") +
               " px-3 py-1 text-md border-2 rounded-lg shadow-2xl"
@@ -24,11 +25,11 @@ const DoctorDashboard = (props) => {
             onClick={() => setMenu("history")}
           >
             Patient History
-          </button>
+          </button> */}
 
           <button
-            className="px-3 py-1 text-md border-2 rounded-lg shadow-2xl"
-            onClick={() => {
+            className="px-3 py-1 text-md border-2 bg-white rounded-lg shadow-black-300 shadow-lg"
+            onClick={async () => {
               setNewMeet(true);
               setWhoAccessing("doctor");
               props.history.push("join");
@@ -37,7 +38,7 @@ const DoctorDashboard = (props) => {
             Join Meeting
           </button>
         </div>
-        <div>
+        {/* <div>
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -86,7 +87,7 @@ const DoctorDashboard = (props) => {
               </tbody>
             </table>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

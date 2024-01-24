@@ -1,5 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getDoctorRoomid, getMappedDoctors } from "../API/apis";
+import {
+  createPatientHistory,
+  getDoctorRoomid,
+  getMappedDoctors,
+} from "../API/apis";
 import { SocketContext } from "../SocketContext";
 
 const Doctors = (props) => {
@@ -74,9 +78,15 @@ const Doctors = (props) => {
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
                         getDoctorRoomid(doctor._id)
-                          .then((res) => {
+                          .then(async (res) => {
                             setMeetingCode(res.mappedData);
                             console.log("doctor id", res);
+
+                            await createPatientHistory(
+                              doctor._id,
+                              doctor?.doctorsData[0]?.fees
+                            );
+
                             props.history.push("join");
                           })
                           .catch((err) => console.log(err));

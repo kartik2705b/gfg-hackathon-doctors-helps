@@ -30,7 +30,7 @@ const PatientDashboard = (props) => {
         <div className="flex space-x-5">
           <button
             className={
-              (menu === "history" ? "bg-green-500 text-white " : "bg-white") +
+              (menu === "history" ? "bg-green-700 text-white " : "bg-white") +
               " px-3 py-1 text-md border-2 rounded-lg shadow-2xl"
             }
             onClick={() => setMenu("history")}
@@ -40,7 +40,7 @@ const PatientDashboard = (props) => {
           <button
             className={
               (menu === "orderhistory"
-                ? "bg-green-500 text-white "
+                ? "bg-green-700 text-white "
                 : "bg-white") +
               " px-3 py-1 text-md border-2 rounded-lg shadow-2xl"
             }
@@ -49,7 +49,7 @@ const PatientDashboard = (props) => {
             Order History
           </button>
           <button
-            className="px-3 py-1 text-md border-2 rounded-lg shadow-2xl"
+            className="px-3 py-1 text-md border-2 bg-white rounded-lg shadow-2xl"
             onClick={() => {
               props.history.push("doctors");
             }}
@@ -61,12 +61,12 @@ const PatientDashboard = (props) => {
           {menu === "history" && (
             <>
               {/* <h1 className="text-xl">Patient History</h1> */}
-              <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" class="px-6 py-3">
-                        DoctorID
+                        Doctor-ID
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Fees Paid
@@ -97,7 +97,7 @@ const PatientDashboard = (props) => {
           {menu === "orderhistory" && (
             <>
               {/* <h1>Order History</h1> */}
-              <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
