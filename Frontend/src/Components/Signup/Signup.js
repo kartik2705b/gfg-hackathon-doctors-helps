@@ -36,6 +36,7 @@ export const Signup = () => {
     fees: "",
     title: "",
     description: "",
+    isAvailable:false
   });
   const {
     register,
