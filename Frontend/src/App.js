@@ -13,6 +13,7 @@ import DoctorDashboard from "./DoctorDashboard/DoctorDashboard";
 import { ToastContextProvider } from "./context/toastContext";
 import Header from "./Components/Header/Header";
 import Hero from "./Components/Hero/Hero";
+import SymptomChecker from "./SymptomChecker/SymptomChecker";
 
 function App() {
   useEffect(() => {
@@ -37,6 +38,12 @@ function App() {
             <Route
               path="/doctordashboard"
               component={DoctorDashboard}
+              exact
+            ></Route>
+
+            <Route
+              path="/symptomchecker"
+              component={SymptomChecker}
               exact
             ></Route>
 
