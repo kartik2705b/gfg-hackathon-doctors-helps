@@ -97,7 +97,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: ERRORS.USER_ACCESS_REMOVED , status: false});
     }
 
-    const isPasswordMatch = await bcrypt.compare(password, isUser.password);
+    const isPasswordMatch = await bcrypt.compare(password, Account.password);
 
     if (!isPasswordMatch) {
       return res.status(401).json({ message: ERRORS.INVALID_CREDENTIALS , status:false});
