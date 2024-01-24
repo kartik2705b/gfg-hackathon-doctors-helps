@@ -44,7 +44,7 @@ const Notes = () => {
     <>
       {!mobileView && (
         <button className='tooltip' type='primary' onClick={handleClick}>
-          <EventNoteIcon />
+          <EventNoteIcon className='text-white' />
           <span className='tooltiptext'>Notes</span>
         </button>
       )}

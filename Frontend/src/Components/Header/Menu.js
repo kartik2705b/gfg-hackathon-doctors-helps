@@ -13,6 +13,7 @@ const Menu = () => {
 
   const handleLogOut = () => {
     localStorage.clear();
+    window.location.href="/"
   };
 
   const toggleDropdown = () => {

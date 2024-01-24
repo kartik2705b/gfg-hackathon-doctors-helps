@@ -83,8 +83,8 @@ const Options = (props) => {
     <>
       <div className={showEditor ? 'options' : 'options w100'}>
         <button className='tooltip' onClick={handleClick}>
-          <MoreVertIcon />
-          <span className='tooltiptext'>Options</span>
+          <MoreVertIcon className='text-white' />
+          <span className='tooltiptext text-white'>Options</span>
         </button>
 
         <button
@@ -115,7 +115,7 @@ const Options = (props) => {
           className={!myMicStatus ? 'bg-grey tooltip' : 'bg-white tooltip'}
         >
           {' '}
-          {myMicStatus ? <MicIcon /> : <MicOffIcon />}
+          {myMicStatus ? <MicIcon  className='text-white'/> : <MicOffIcon className='text-white' />}
           <span className='tooltiptext'>
             {myMicStatus ? 'Turn off mic' : 'Turn on mic'}
           </span>
@@ -125,7 +125,7 @@ const Options = (props) => {
           type='primary'
           onClick={() => setShowChatBox(!showChatBox)}
         >
-          <ChatIcon />
+          <ChatIcon className='text-white' />
           <span className='tooltiptext'>Chat</span>
         </button>
 

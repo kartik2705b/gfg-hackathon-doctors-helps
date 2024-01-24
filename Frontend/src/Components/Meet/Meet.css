@@ -1,7 +1,7 @@
 .flex-div {
   display: flex;
   height: 100vh;
-  background-color: white;
+  background-color: #F2F4EA;
 }
 
 .flex-div .left {

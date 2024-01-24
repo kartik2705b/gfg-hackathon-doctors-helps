@@ -68,19 +68,19 @@ const Messages = () => {
     <Dialog
       open={showChatBox}
       onClose={handleClose}
-      aria-labelledby='draggable-dialog-title'
+      aria-labelledby="draggable-dialog-title"
     >
       <DialogTitle>
-        <div className='btn-div'>
+        <div className="btn-div">
           <h3>Chatbox</h3>
-          <button type='primary' onClick={handleClose}>
+          <button type="primary" onClick={handleClose}>
             <CloseIcon />
           </button>
         </div>
       </DialogTitle>
       <DialogContent>
-        <div className='outer-div'>
-          <div className='messages scrollbar'>
+        <div className="outer-div">
+          <div className="messages scrollbar">
             {messages.length > 0 ? (
               messages.map((item, i) => (
                 <Message message={item} key={i} item={i} />
@@ -91,25 +91,25 @@ const Messages = () => {
             <div ref={msgRef}></div>
           </div>
         </div>
-        <div className='inputs'>
-          {' '}
+        <div className="inputs">
+          {" "}
           <input
-            type='text'
+            type="text"
             value={newMessage}
             onChange={(e) => {
               setNewMessage(e.target.value);
             }}
             onKeyPress={handleKeypress}
-            placeholder='Enter a message'
+            placeholder="Enter a message"
           />
-          <Button
-            type='primary'
+          <button
+            className="bg-green-600 rounded"
             onClick={() => {
               sendMessage();
             }}
           >
-            Send
-          </Button>
+            <p className='py-2 px-4 mb-0 text-white font-medium'>Send</p>
+          </button>
         </div>
       </DialogContent>
     </Dialog>

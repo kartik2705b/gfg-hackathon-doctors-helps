@@ -102,82 +102,86 @@ const Meet = (props) => {
     );
   }
   return (
-    <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
-      <div className='left'>
-        <div className='video-div'>
-          {' '}
-          <div
-            className={callAccepted ? 'video-frames ' : 'video-frames v-size'}
-          >
-            <div className='video-frame'>
-              {stream ? (
-                <>
-                  {myMicStatus ? <MicIcon /> : <MicOffIcon />}
-                  {myVideoStatus ? (
+    <div>
+      <div className={showEditor ? "flex-div" : "flex-div hide-editor"}>
+        <div className="left">
+          <div className="video-div">
+            <div
+              className={callAccepted ? "video-frames " : "video-frames v-size"}
+            >
+              <div className="w-[350px] md:w-[700px] border-2 rounded border-green-700 mt-6">
+                {stream ? (
+                  <>
+                    {myVideoStatus ? (
+                      <video
+                        width="700"
+                        height="140"
+                        className="video-ref"
+                        src=""
+                        ref={myVideo}
+                        autoPlay
+                        muted
+                      ></video>
+                    ) : (
+                      <div className="video-ref img-bg">
+                        <img src={homeIcon1} />
+                      </div>
+                    )}
+                    <div className="name text-center">{name}</div>
+                  </>
+                ) : (
+                  <Spinner />
+                )}
+              </div>
+
+              {callAccepted && (
+                <div className="video-frame">
+                  {userMicStatus ? <MicIcon /> : <MicOffIcon />}
+                  {userVideoStatus ? (
                     <video
-                      width='250'
-                      height='140'
-                      className='video-ref'
-                      src=''
-                      ref={myVideo}
+                      width="250"
+                      height="140"
+                      src=""
+                      className="video-ref"
+                      ref={userVideo}
                       autoPlay
-                      muted
+                      // muted
                     ></video>
                   ) : (
-                    <div className='video-ref img-bg'>
+                    <div className="video-ref img-bg">
                       <img src={homeIcon1} />
                     </div>
                   )}
-                  <div className='name'>{name} (you)</div>
-                </>
-              ) : (
-                <Spinner />
+                  <div className="name">{otherUserName}</div>
+                </div>
               )}
             </div>
-
-            {callAccepted && (
-              <div className='video-frame'>
-                {userMicStatus ? <MicIcon /> : <MicOffIcon />}
-                {userVideoStatus ? (
-                  <video
-                    width='250'
-                    height='140'
-                    src=''
-                    className='video-ref'
-                    ref={userVideo}
-                    autoPlay
-                    // muted
-                  ></video>
-                ) : (
-                  <div className='video-ref img-bg'>
-                    <img src={homeIcon1} />
-                  </div>
-                )}
-                <div className='name'>{otherUserName}</div>
-              </div>
-            )}
+          </div>
+          <div className="flex">
+            <Options history={props.history} />
           </div>
         </div>
-        <div className='bar'>
-          <Options history={props.history} />
-        </div>
-      </div>
-      {!mobileView && showEditor && (
-        <div className='right'>
-          <div className='editor-div'>
-            <div className='head'>
-              <div className='head-title'>
-                <img src={noteIcon} alt='' />
-                <h3>Whiteboard</h3>
+        {!mobileView && showEditor && (
+          <div className="right">
+            <div className="editor-div">
+              <div className="head">
+                <div className="head-title">
+                  <img src={noteIcon} alt="" />
+                  <h3>Whiteboard</h3>
+                </div>
+                <button
+                  className="download"
+                  onClick={() => downloadPdf()}
+                  title="Download whiteboard"
+                >
+                  <GetAppIcon />
+                </button>
               </div>
-              <button className='download' onClick={() => downloadPdf()} title='Download whiteboard'>
-                <GetAppIcon />
-              </button>
+              <Editor />
             </div>
-            <Editor />
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
