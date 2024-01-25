@@ -6,11 +6,16 @@ import Menu from "./Menu";
 
 const Header = () => {
   const [token, setToken] = useState(null);
+  const [state, setState] = useState(null);
+
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
+   
+    
+      console.log("token", localStorage.getItem('token'))
+      setToken(localStorage.getItem('token'))
+
+   
+    
   }, []);
   return (
     <header>
