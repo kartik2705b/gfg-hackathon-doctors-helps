@@ -37,6 +37,12 @@ const DoctorDashboard = (props) => {
           >
             Join Meeting
           </button>
+          <a
+            className="px-3 py-1 text-md border-2 bg-white rounded-lg shadow-black-300 shadow-lg"
+            href="https://mri-viewer.vercel.app/"
+          >
+            MRI Viewer
+          </a>
         </div>
         {/* <div>
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
