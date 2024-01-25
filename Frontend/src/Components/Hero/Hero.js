@@ -3,6 +3,22 @@ import doctor from "../../assets/doctor.png";
 import flower from "../../assets/Flower.png";
 
 const Hero = () => {
+  const handleClick = () => {
+    const token = localStorage.getItem('token')
+    const role = localStorage.getItem('role')
+
+    if(token && role){
+      if(role === 'patient'){
+        window.location.href = "patientdashboard"
+      }else if(role === 'doctor'){
+        window.location.href = "doctordashboard"
+      }else{
+        window.location.href = "login"
+      }
+    }else{
+      window.location.href = "login"
+    }
+  }
   return (
     <section class="bg-[#F2F4EA] h-auto">
       <div class="grid max-w-screen-xl px-4 py-8 mx-auto md:gap-8 xl:gap-0 md:py-16 md:grid-cols-12">
@@ -27,12 +43,12 @@ const Hero = () => {
             professional advice seamlessly. Your well-being is our priority, now
             just a click away.
           </p>
-          <a
-            href="#"
+          <button
+          onClick={() => handleClick()}
             class="inline-flex items-center justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
           >
             Find Your Doctor
-          </a>
+          </button>
         </div>
         <div class=" mt-6 md:mt-0 lg:col-span-5 lg:flex">
           <img src={doctor} alt="mockup" className="rounded-lg" />
