@@ -277,10 +277,13 @@ export const IncreaseQty = async (productId) => {
     )
     .then((res) => {
       // console.log(res.data);
+      return { status: true}
       // CallRequest();
     })
     .catch((e) => {
       // console.log(e);
+      console.log(e)
+      return { status : false}
       // toast.error(e.response.data.message);
     });
   return response;
@@ -297,10 +300,12 @@ export const DecreseQty = async (productId) => {
     )
     .then((res) => {
       // console.log(res.data);
+      return { status : true}
       // CallRequest();
     })
     .catch((e) => {
       // console.log(e);
+      return { status : false}
       // toast.error(e.response.data.message);
     });
   return response;
@@ -314,9 +319,11 @@ export const getCart = async () => {
     })
     .then((res) => {
       // console.log(res.data)
+      return {status: true , cartItems : res.data.CartItems}
       // setCartItems(res.data.CartItems);
     })
     .catch((e) => {
+      return {status: false , message:e.response.data.message}
       // toast.error(e.response.data.message);
     });
 
@@ -328,9 +335,12 @@ export const removeCartItems = async (productId) => {
     .delete(`${BACKEND_URL}/api/v1/users/cart/delete/${productId}`, {
       headers: { authorization: localStorage.getItem("token") },
     })
-    .then((res) => {})
+    .then((res) => {
+      return {status:true}
+    })
     .catch((e) => {
       console.log(e);
+      return{ status: false}
       // toast.error(e.response.data.message);
     });
 
@@ -350,11 +360,13 @@ export const AddToCart = async (productDetail, qty) => {
       }
     )
     .then((res) => {
+      return {status: true , message: res.data.message}
       // toast.success("Cart Item Removed");
       // console.log(res.data);
       // CallRequest();
     })
     .catch((e) => {
+      return {status : false , message : e.response.data.message}
       // console.log(e);
       // toast.error(e.response.data.message);
     });
