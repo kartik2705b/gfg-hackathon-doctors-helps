@@ -380,3 +380,20 @@ export const getProducts = async (page) => {
 
   return response;
 };
+
+export const getOrdersHistory = async(page) =>{
+  const response = await axios.get(`${BACKEND_URL}/api/v1/orders?page=${page}`, {
+    headers: { authorization: localStorage.getItem("token") } }).then((res)=>{
+    return{
+      message:res.data.message,
+      status:true,
+      orderHistory : res.data.orders
+    }
+  }).catch((E)=>{
+    return{
+      message:E.response.data.message,
+      state:false
+    }
+  })
+  return response;
+}
