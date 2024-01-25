@@ -364,7 +364,7 @@ export const AddToCart = async (productDetail, qty) => {
 
 export const getProducts = async (page) => {
   const response = await axios
-    .patch(`${BACKEND_URL}/api/v1/products?page=${page}`, {
+    .get(`${BACKEND_URL}/api/v1/products?page=${page}`, {
       headers: { authorization: localStorage.getItem("token") },
     })
     .then((res) => {

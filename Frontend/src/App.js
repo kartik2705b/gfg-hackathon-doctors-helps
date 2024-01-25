@@ -14,6 +14,9 @@ import { ToastContextProvider } from "./context/toastContext";
 import Header from "./Components/Header/Header";
 import Hero from "./Components/Hero/Hero";
 import SymptomChecker from "./SymptomChecker/SymptomChecker";
+import Store from "./Components/Store/Store";
+import Checkout from "./Components/Checkout/Checkout";
+
 
 function App() {
   useEffect(() => {
@@ -30,6 +33,7 @@ function App() {
             <Route path="/signup" component={Signup} exact></Route>
             <Route path="/login" component={Login} exact></Route>
             <Route path="/doctors" component={Doctors} exact></Route>
+            <Route path="/checkout" component={Checkout} exact></Route>
             <Route
               path="/patientdashboard"
               component={PatientDashboard}
@@ -48,6 +52,7 @@ function App() {
             ></Route>
 
             <Route path="/home" component={Home} exact></Route>
+            <Route path="/store" component={Store} exact></Route>
             <Route path="/meet" component={Meet}></Route>
             <Route path="/join" component={Join}></Route>
           </Switch>
