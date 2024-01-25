@@ -5,11 +5,32 @@ import {
   getMappedDoctors,
 } from "../API/apis";
 import { SocketContext } from "../SocketContext";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const Doctors = (props) => {
   const [doctors, setDoctors] = useState([]);
   const [roomIds, setRoomIds] = useState([]);
   const { meetingCode, setMeetingCode, setNewMeet } = useContext(SocketContext);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen((curr) => !curr);
+  };
 
   useEffect(() => {
     getMappedDoctors()
@@ -77,23 +98,44 @@ const Doctors = (props) => {
                       href="#"
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
-                        getDoctorRoomid(doctor._id)
-                          .then(async (res) => {
-                            setMeetingCode(res.mappedData);
-                            console.log("doctor id", res);
+                        setOpen(true);
+                        // getDoctorRoomid(doctor._id)
+                        //   .then(async (res) => {
+                        //     setMeetingCode(res.mappedData);
+                        //     console.log("doctor id", res);
 
-                            await createPatientHistory(
-                              doctor._id,
-                              doctor?.doctorsData[0]?.fees
-                            );
+                        //     await createPatientHistory(
+                        //       doctor._id,
+                        //       doctor?.doctorsData[0]?.fees
+                        //     );
 
-                            props.history.push("join");
-                          })
-                          .catch((err) => console.log(err));
+                        //     props.history.push("join");
+                        //   })
+                        //   .catch((err) => console.log(err));
                       }}
                     >
                       Pay and Talk
                     </button>
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box sx={style}>
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          Text in a modal
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                          Duis mollis, est non commodo luctus, nisi erat
+                          porttitor ligula.
+                        </Typography>
+                      </Box>
+                    </Modal>
                   </td>
                 </tr>
               ))}
