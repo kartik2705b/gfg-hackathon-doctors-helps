@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import PaymentModal from "../Payments/paymentModal";
 
 const style = {
   position: "absolute",
@@ -99,19 +100,19 @@ const Doctors = (props) => {
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
                         setOpen(true);
-                        // getDoctorRoomid(doctor._id)
-                        //   .then(async (res) => {
-                        //     setMeetingCode(res.mappedData);
-                        //     console.log("doctor id", res);
+                        getDoctorRoomid(doctor._id)
+                          .then(async (res) => {
+                            setMeetingCode(res.mappedData);
+                            console.log("doctor id", res);
 
-                        //     await createPatientHistory(
-                        //       doctor._id,
-                        //       doctor?.doctorsData[0]?.fees
-                        //     );
+                            await createPatientHistory(
+                              doctor._id,
+                              doctor?.doctorsData[0]?.fees
+                            );
 
-                        //     props.history.push("join");
-                        //   })
-                        //   .catch((err) => console.log(err));
+                            // props.history.push("join");
+                          })
+                          .catch((err) => console.log(err));
                       }}
                     >
                       Pay and Talk
@@ -128,12 +129,13 @@ const Doctors = (props) => {
                           variant="h6"
                           component="h2"
                         >
-                          Text in a modal
+                          Secure Payment
                         </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <PaymentModal total={doctor?.doctorsData[0]?.fees} setOpen={setOpen} props={props}/>
+                        {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                           Duis mollis, est non commodo luctus, nisi erat
                           porttitor ligula.
-                        </Typography>
+                        </Typography> */}
                       </Box>
                     </Modal>
                   </td>
