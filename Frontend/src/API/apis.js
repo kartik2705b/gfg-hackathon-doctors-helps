@@ -221,3 +221,115 @@ export const createDoctorHistory = async (patientId, fees) => {
     });
   return response;
 };
+
+export const EmptyCart = async () => {
+  await axios
+    .patch(
+      `${BACKEND_URL}/api/v1/users/cart/clear`,
+      {},
+      {
+        headers: { authorization: localStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      // setCartItems(res.data.user.CartItems);
+    })
+    .catch((e) => {
+      // console.log(e.response.data.message);
+    });
+};
+export const createOrder = async (cart, address , paymentId)=>{
+  axios
+      .post(
+        `${BACKEND_URL}/api/v1/orders`,
+        {
+          products: cart.state.cartItems,
+          totalPrice: cart.state.total,
+          shippingAddress: address,
+          paymentId: paymentId,
+        },
+        {
+          headers: { authorization: localStorage.getItem("token") },
+        }
+      )
+      .then((res) => {
+        // toast.success(res?.data?.message);
+        EmptyCart();
+        // console.log(res.data);
+        // setShow(false)
+      })
+      .catch((e) => {
+        // toast.error(e?.response?.data?.message);
+        // console.log(e)
+      });
+}
+
+
+export const IncreaseQty = (productId) => {
+  axios
+    .patch(
+      `${BACKEND_URL}/api/v1/users/cart/update/${productId}`,
+      { mode: "add" },
+      {
+        headers: { authorization: localStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      // console.log(res.data);
+      // CallRequest();
+    })
+    .catch((e) => {
+      // console.log(e);
+      // toast.error(e.response.data.message);
+    });
+};
+
+export const DecreseQty = (productId) => {
+  axios
+    .patch(
+      `${BACKEND_URL}/api/v1/users/cart/update/${productId}`,
+      { mode: "less" },
+      {
+        headers: { authorization: localStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      // console.log(res.data);
+      // CallRequest();
+    })
+    .catch((e) => {
+      // console.log(e);
+      // toast.error(e.response.data.message);
+    });
+};
+
+export const getCart = () => {
+  // console.log("hit")
+  axios
+    .get(`${URL}/api/v1/user/cartItems`, {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      // console.log(res.data)
+      // setCartItems(res.data.CartItems);
+    })
+    .catch((e) => {
+      // toast.error(e.response.data.message);
+    });
+};
+
+export const removeCartItems = (productId) => {
+  axios
+    .delete(`${URL}/api/v1/users/cart/delete/${productId}`, {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      toast.success("Cart Item Removed");
+      console.log(res.data);
+      CallRequest();
+    })
+    .catch((e) => {
+      console.log(e);
+      // toast.error(e.response.data.message);
+    });
+};
