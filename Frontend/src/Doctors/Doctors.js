@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import PaymentModal from "../Payments/paymentModal";
+import ToastContext from "../context/toastContext";
 
 const style = {
   position: "absolute",
@@ -26,8 +27,18 @@ const style = {
 const Doctors = (props) => {
   const [doctors, setDoctors] = useState([]);
   const [roomIds, setRoomIds] = useState([]);
+  const {toast} = useContext(ToastContext);
   const { meetingCode, setMeetingCode, setNewMeet } = useContext(SocketContext);
   const [open, setOpen] = useState(false);
+  const [err , setErr] = useState(false); 
+
+  const showToast = () =>{
+  if(err){
+    toast.error("Payment Failed")
+  }else{
+    toast.success("Payment Success")
+  }
+  }
 
   const handleClose = () => {
     setOpen((curr) => !curr);
@@ -131,11 +142,7 @@ const Doctors = (props) => {
                         >
                           Secure Payment
                         </Typography>
-                        <PaymentModal total={doctor?.doctorsData[0]?.fees} setOpen={setOpen} props={props}/>
-                        {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          Duis mollis, est non commodo luctus, nisi erat
-                          porttitor ligula.
-                        </Typography> */}
+                        <PaymentModal total={doctor?.doctorsData[0]?.fees} setOpen={setOpen} props={props} setErr={setErr} showToast={showToast}/>
                       </Box>
                     </Modal>
                   </td>

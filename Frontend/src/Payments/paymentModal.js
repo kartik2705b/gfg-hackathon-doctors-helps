@@ -10,7 +10,7 @@ import axios from "axios";
 import { EmptyCart } from "../API/apis";
 import ToastContext from "../context/toastContext";
 
-const PaymentModal = ({total , props}) => {
+const PaymentModal = ({total , props , setErr , showToast}) => {
     const toast = useContext(ToastContext)
 //   const cartValue = useContext(AddToCartContext);
 
@@ -47,6 +47,8 @@ const PaymentModal = ({total , props}) => {
       const { payer } = details;
       props.history.push("/join")
       setSuccess(true);
+      setErr(false)
+      showToast()
     });
   };
 
@@ -61,16 +63,19 @@ const PaymentModal = ({total , props}) => {
   //capture likely error
   const onError = (data, actions) => {
     setErrorMessage("An Error occured with your payment ");
+    setErr(true)
+    showToast();
+
   };
 
   useEffect(() => {
     if (ErrorMessage) {
-
+    
     }
   }, [ErrorMessage]);
 
   return (
-    <div className="w-full lg:w-1/3 ">
+    <div className="w-full h-96 overflow-auto" >
      
       <PayPalScriptProvider options={{ "client-id": "Abi6kgW2MeNbq_7xibfLDcwAEhedLuEe2wXRbu9w2p1aGamcbo7V2rI1LfeCIpNgMMSEc4rBkwaMwgWq" }}>
         <div className="text-center">
