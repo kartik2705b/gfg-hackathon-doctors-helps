@@ -223,7 +223,7 @@ export const createDoctorHistory = async (patientId, fees) => {
 };
 
 export const EmptyCart = async () => {
-  await axios
+  const response = await axios
     .patch(
       `${BACKEND_URL}/api/v1/users/cart/clear`,
       {},
@@ -237,36 +237,37 @@ export const EmptyCart = async () => {
     .catch((e) => {
       // console.log(e.response.data.message);
     });
+  return response;
 };
-export const createOrder = async (cart, address , paymentId)=>{
-  axios
-      .post(
-        `${BACKEND_URL}/api/v1/orders`,
-        {
-          products: cart.state.cartItems,
-          totalPrice: cart.state.total,
-          shippingAddress: address,
-          paymentId: paymentId,
-        },
-        {
-          headers: { authorization: localStorage.getItem("token") },
-        }
-      )
-      .then((res) => {
-        // toast.success(res?.data?.message);
-        EmptyCart();
-        // console.log(res.data);
-        // setShow(false)
-      })
-      .catch((e) => {
-        // toast.error(e?.response?.data?.message);
-        // console.log(e)
-      });
-}
+export const createOrder = async (cart, address, paymentId) => {
+  const response = await axios
+    .post(
+      `${BACKEND_URL}/api/v1/orders`,
+      {
+        products: cart.state.cartItems,
+        totalPrice: cart.state.total,
+        shippingAddress: address,
+        paymentId: paymentId,
+      },
+      {
+        headers: { authorization: localStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      // toast.success(res?.data?.message);
+      EmptyCart();
+      // console.log(res.data);
+      // setShow(false)
+    })
+    .catch((e) => {
+      // toast.error(e?.response?.data?.message);
+      // console.log(e)
+    });
+  return response;
+};
 
-
-export const IncreaseQty = (productId) => {
-  axios
+export const IncreaseQty = async (productId) => {
+  const response = await axios
     .patch(
       `${BACKEND_URL}/api/v1/users/cart/update/${productId}`,
       { mode: "add" },
@@ -282,10 +283,11 @@ export const IncreaseQty = (productId) => {
       // console.log(e);
       // toast.error(e.response.data.message);
     });
+  return response;
 };
 
-export const DecreseQty = (productId) => {
-  axios
+export const DecreseQty = async (productId) => {
+  const response = await axios
     .patch(
       `${BACKEND_URL}/api/v1/users/cart/update/${productId}`,
       { mode: "less" },
@@ -301,12 +303,13 @@ export const DecreseQty = (productId) => {
       // console.log(e);
       // toast.error(e.response.data.message);
     });
+  return response;
 };
 
-export const getCart = () => {
+export const getCart = async () => {
   // console.log("hit")
-  axios
-    .get(`${URL}/api/v1/user/cartItems`, {
+  const response = await axios
+    .get(`${BACKEND_URL}/api/v1/user/cartItems`, {
       headers: { authorization: localStorage.getItem("token") },
     })
     .then((res) => {
@@ -316,20 +319,64 @@ export const getCart = () => {
     .catch((e) => {
       // toast.error(e.response.data.message);
     });
+
+  return response;
 };
 
-export const removeCartItems = (productId) => {
-  axios
-    .delete(`${URL}/api/v1/users/cart/delete/${productId}`, {
+export const removeCartItems = async (productId) => {
+  const response = await axios
+    .delete(`${BACKEND_URL}/api/v1/users/cart/delete/${productId}`, {
       headers: { authorization: localStorage.getItem("token") },
     })
-    .then((res) => {
-      toast.success("Cart Item Removed");
-      console.log(res.data);
-      CallRequest();
-    })
+    .then((res) => {})
     .catch((e) => {
       console.log(e);
       // toast.error(e.response.data.message);
     });
+
+  return response;
+};
+
+export const AddToCart = async (productDetail, qty) => {
+  const response = await axios
+    .patch(
+      `${BACKEND_URL}/api/v1/users/cart`,
+      {
+        product: productDetail,
+        qty: qty,
+      },
+      {
+        headers: { authorization: localStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      // toast.success("Cart Item Removed");
+      // console.log(res.data);
+      // CallRequest();
+    })
+    .catch((e) => {
+      // console.log(e);
+      // toast.error(e.response.data.message);
+    });
+
+  return response;
+};
+
+export const getProducts = async (page) => {
+  const response = await axios
+    .patch(`${BACKEND_URL}/api/v1/products?page=${page}`, {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+        user: res.data.products,
+      };
+    })
+    .catch((e) => {
+      return { message: e.response.data.message, status: false };
+    });
+
+  return response;
 };
