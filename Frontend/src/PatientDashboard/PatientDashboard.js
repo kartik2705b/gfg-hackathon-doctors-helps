@@ -148,6 +148,7 @@ const PatientDashboard = (props) => {
                              ORD{items?._id?.split("").slice(20, 24).join("")}
                           </th>
                           <td class="px-6 py-4">PAY{items?.paymentId?.split("").splice(0, 5).join("")}</td>
+                          <td class="px-6 py-4">{items?.status}</td>
                           <td class="px-6 py-4">{items.shippingAddress.admin_area_2}</td>
                           <td class="px-6 py-4">{items.totalPrice}.00</td>
                           <td class="px-6 py-4">

@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import {
   DecreseQty,
   IncreaseQty,
+  createMedOrder,
   getCart,
   removeCartItems,
 } from "../../API/apis";
@@ -11,6 +13,69 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const { toast } = useContext(ToastContext);
   const [total, setTotal] = useState(0);
+  const [showPayment , setShowPayment] = useState(false);
+  const [show, setShow] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState("");
+  const [orderID, setOrderID] = useState(false);
+
+  // creates a paypal order
+  const createOrder = (data, actions) => {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            description: "Orders",
+            amount: {
+              currency_code: "USD",
+              value: total,
+            },
+          },
+        ],
+      })
+      .then((orderID) => {
+        setOrderID(orderID);
+        return orderID;
+      });
+  };
+
+  const handleCreateOrder = async(address, paymentId) => {
+    const response = await createMedOrder(cartItems , address, paymentId , total);
+    if(response.status){
+      toast.success("Order Placed Success")
+      handleGetCart();
+    }else{
+      toast.error("Order Failed")
+    }
+  };
+
+  // check Approval
+  const onApprove = (data, actions) => {
+    return actions.order.capture().then(async function (details) {
+      const { payer } = details;
+     await handleCreateOrder(details.purchase_units[0].shipping.address, details.id);
+      setSuccess(true);
+    });
+  };
+
+  useEffect(() => {
+    if (success) {
+
+      setShowPayment(false);
+    }
+  }, [success]);
+
+  //capture likely error
+  const onError = (data, actions) => {
+    setErrorMessage("An Error occured with your payment ");
+  };
+
+  useEffect(() => {
+    if (ErrorMessage) {
+      toast.error(ErrorMessage);
+    }
+  }, [ErrorMessage]);
+
 
   const handleGetCart = async () => {
     const response = await getCart();
@@ -157,9 +222,26 @@ const Checkout = () => {
               <p className="text-sm text-gray-700">including VAT</p>
             </div>
           </div>
-          <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+          <button onClick={()=> setShowPayment(true)} className="mt-6 mb-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
             Check out
           </button>
+          {showPayment ? ( <div className="w-full h-96 overflow-auto" >
+     
+     <PayPalScriptProvider options={{ "client-id": "Abi6kgW2MeNbq_7xibfLDcwAEhedLuEe2wXRbu9w2p1aGamcbo7V2rI1LfeCIpNgMMSEc4rBkwaMwgWq" }}>
+       <div className="text-center">
+      
+         
+           <PayPalButtons
+             style={{ layout: "vertical" }}
+             createOrder={createOrder}
+             onApprove={onApprove}
+           />
+       
+       </div>
+     </PayPalScriptProvider>
+ 
+   </div>):<></> }
+
         </div>
       </div>
     </div>

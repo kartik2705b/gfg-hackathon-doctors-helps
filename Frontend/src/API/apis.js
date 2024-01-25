@@ -232,20 +232,22 @@ export const EmptyCart = async () => {
       }
     )
     .then((res) => {
+      return {status:true}
       // setCartItems(res.data.user.CartItems);
     })
     .catch((e) => {
+      return {status:false}
       // console.log(e.response.data.message);
     });
   return response;
 };
-export const createOrder = async (cart, address, paymentId) => {
+export const createMedOrder = async (cartItems, address, paymentId ,total) => {
   const response = await axios
     .post(
       `${BACKEND_URL}/api/v1/orders`,
       {
-        products: cart.state.cartItems,
-        totalPrice: cart.state.total,
+        products: cartItems,
+        totalPrice: total,
         shippingAddress: address,
         paymentId: paymentId,
       },
@@ -253,13 +255,17 @@ export const createOrder = async (cart, address, paymentId) => {
         headers: { authorization: localStorage.getItem("token") },
       }
     )
-    .then((res) => {
+    .then(async(res) => {
       // toast.success(res?.data?.message);
-      EmptyCart();
+      await EmptyCart();
+      console.log(res.data)
+      return {status: true}
+      
       // console.log(res.data);
       // setShow(false)
     })
     .catch((e) => {
+      return { status : false}
       // toast.error(e?.response?.data?.message);
       // console.log(e)
     });
