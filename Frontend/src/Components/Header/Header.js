@@ -30,25 +30,26 @@ const Header = () => {
             </h1>
           </a>
 
-          <div className="flex items-center">
-            {role === "patient" && (
-              <a
-                href="/store"
-                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36] hidden lg:block"
-              >
-                Medicine Store
-              </a>
-            )}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:block">
+              {role === "patient" && (
+                <a
+                  href="/store"
+                  className="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded border border-green-900 hover:bg-greem-900 hover:text-white-700 mr-4"
+                >
+                  Medicine
+                </a>
+              )}
 
-            {role === "patient" && (
-              <a
-                href="/checkout"
-                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36] hidden lg:block"
-              >
-                Cart
-              </a>
-            )}
-
+              {role === "patient" && (
+                <a
+                  href="/checkout"
+                  className="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded border border-green-900 hover:bg-greem-900 hover:text-white-700"
+                >
+                  Cart
+                </a>
+              )}
+            </div>
             {!token ? (
               <a
                 type="button"
