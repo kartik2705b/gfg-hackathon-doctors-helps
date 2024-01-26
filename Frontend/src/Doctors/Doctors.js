@@ -27,18 +27,18 @@ const style = {
 const Doctors = (props) => {
   const [doctors, setDoctors] = useState([]);
   const [roomIds, setRoomIds] = useState([]);
-  const {toast} = useContext(ToastContext);
+  const { toast } = useContext(ToastContext);
   const { meetingCode, setMeetingCode, setNewMeet } = useContext(SocketContext);
   const [open, setOpen] = useState(false);
-  const [err , setErr] = useState(false); 
+  const [err, setErr] = useState(false);
 
-  const showToast = () =>{
-  if(err){
-    toast.error("Payment Failed")
-  }else{
-    toast.success("Payment Success")
-  }
-  }
+  const showToast = () => {
+    if (err) {
+      toast.error("Payment Failed");
+    } else {
+      toast.success("Payment Success");
+    }
+  };
 
   const handleClose = () => {
     setOpen((curr) => !curr);
@@ -92,12 +92,12 @@ const Doctors = (props) => {
                     (doctor?.doctorsData[0]?.isAvailable
                       ? "bg-green-500"
                       : "bg-red-500") +
-                    " border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    " border-b dark:bg-gray-800 text-black dark:border-gray-700 dark:hover:bg-gray-600"
                   }
                 >
                   <th
                     scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    class="px-6 py-4 font-medium  whitespace-nowrap dark:text-white"
                   >
                     {doctor?.firstName}
                   </th>
@@ -108,7 +108,7 @@ const Doctors = (props) => {
                   <td class="px-6 py-4">
                     <button
                       href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      class="font-medium px-3 py-1 bg-white rounded-sm shadow-md dark:text-blue-500 hover:underline"
                       onClick={() => {
                         setOpen(true);
                         getDoctorRoomid(doctor._id)
@@ -142,7 +142,13 @@ const Doctors = (props) => {
                         >
                           Secure Payment
                         </Typography>
-                        <PaymentModal total={doctor?.doctorsData[0]?.fees} setOpen={setOpen} props={props} setErr={setErr} showToast={showToast}/>
+                        <PaymentModal
+                          total={doctor?.doctorsData[0]?.fees}
+                          setOpen={setOpen}
+                          props={props}
+                          setErr={setErr}
+                          showToast={showToast}
+                        />
                       </Box>
                     </Modal>
                   </td>
