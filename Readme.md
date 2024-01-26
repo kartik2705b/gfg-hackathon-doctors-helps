@@ -1,3 +1,4 @@
+
 # MY DOCTOR (Online Healthcare Platform)
 
 
@@ -9,9 +10,9 @@ Our innovative project revolutionizes healthcare by providing a platform for onl
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Tech stack](#techstack)
+
+
 
 ## Introduction
 
@@ -23,10 +24,15 @@ Welcome to our Online Healthcare Platform, a comprehensive solution that revolut
 - **Online Pharmacy:** Conveniently order prescribed medications through our secure online pharmacy services.
 - **User-Friendly Interface:** Intuitive design for a smooth and hassle-free user experience.
 - **Security:** Ensure the privacy and security of user data and medical information.
+- **MRI viewer for Doctors:** This feature makes the doctor work easy by viewing the MRI online rather than cheking throw offline.MRI Viewer is a high performance web tool for advanced visualization (both in 2D and 3D modes) medical volumetric data, provided in popular file formats: DICOM, NIfTI, KTX™, HDR.
+- **Symptoms checker:** we have gave the option for the patient to check their possible dieses by giving their symptoms. 
+
 
 ## Requirements
 
-- Node.js
+- Node.js -16. 
+- Mongo DB
+- React Js
 - npm (Node Package Manager)
 
 ## Installation
@@ -34,35 +40,22 @@ Welcome to our Online Healthcare Platform, a comprehensive solution that revolut
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/online-healthcare-platform.git
+   git clone https://github.com/kartik2705b/gfg-hackathon-doctors-helps.git
+   
+2. Run the commands:   
 
-
-## Features
-
-- 1:1 Video chat
-- Live Editor(Whiteboard) with syntax highlighting for interviews
-- Notes (downloadable as PDF) 
-- Instantly join a call with a meeting link
-- Real time chat
-- Chat Notifications
-- Instant notifications of ongoing meeting
-- Mute audio/video
-- Neat and clean UI
-
-## Steps to run in your machine
-
-#### Run the following commands
-```
-
-cd Backend
-npm i
-npm run server
-cd Frontend
-npm i
-npm run start
-```
+## TechStack
+- React js
+- Node js
+- Socket IO
+- Tailwind CSS
+- Paypal
+- ZOD
+- WebRTC
+- Node mailer (sending the mail after sign up)
 
 
 
 
-#### Hope you liked this project, dont forget to ⭐ the repo.
+
+
