@@ -61,6 +61,12 @@ const Hero = () => {
           >
             Find Your Medicine
           </button>
+          <button
+          onClick={() => handleClick()}
+            class="inline-flex items-center mt-2 ml-0 justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
+          >
+            Book an Appoinment
+          </button>
         </div>
         <div class=" mt-6 md:mt-0 lg:col-span-5 lg:flex">
           <img src={doctor} alt="mockup" className="rounded-lg" />

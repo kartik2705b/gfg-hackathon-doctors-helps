@@ -26,7 +26,8 @@ const DoctorMapping = require("./Routes/doctorRoute");
 const Products = require("./Routes/productRoute");
 const OrderRoute = require("./Routes/orderRoute");
 const HistoryRoute = require("./Routes/historyRoute");
-const cartRoute = require("./Routes/cartRoute")
+const cartRoute = require("./Routes/cartRoute");
+const appointmentRoute = require("./Routes/scheduleRoute");
 
 app.use("/api/v1", AccountRoute);
 app.use("/api/v1" , Products);
@@ -34,6 +35,8 @@ app.use("/api/v1" ,Auth ,DoctorMapping );
 app.use("/api/v1", Auth, OrderRoute);
 app.use("/api/v1" , Auth , HistoryRoute);
 app.use("/api/v1" , Auth , cartRoute);
+app.use("/api/v1" , Auth , appointmentRoute);
+
 
 
 io.on('connection', (socket) => {

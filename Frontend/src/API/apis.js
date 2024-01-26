@@ -439,3 +439,126 @@ export const getProductBySearch = async (payload) => {
 
   return response;
 };
+
+export const getPatientAppointments = async () => {
+  const response = await axios
+    .get(`${BACKEND_URL}/api/v1/getUserAppoinment`, {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+        appointments: res.data.appointments,
+      };
+    })
+    .catch((E) => {
+      return {
+        message: E.response.data.message,
+        state: false,
+      };
+    });
+  return response;
+};
+
+export const getDoctorAppoinment = async () => {
+  const response = await axios
+    .get(`${BACKEND_URL}/api/v1/getDoctorAppoinment`, {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+        appointments: res.data.appointments,
+      };
+    })
+    .catch((E) => {
+      return {
+        message: E.response.data.message,
+        state: false,
+      };
+    });
+  return response;
+};
+
+export const createAppoinment = async(payload)=>{
+  const response = await axios
+  .post(`${BACKEND_URL}/api/v1/createAppointment`,{payload} ,{
+    headers: { authorization: localStorage.getItem("token") },
+  })
+  .then((res) => {
+    return {
+      message: res.data.message,
+      status: true,
+    };
+  })
+  .catch((E) => {
+    return {
+      message: E.response.data.message,
+      state: false,
+    };
+  });
+return response;
+}
+
+export const confirmAppoinment = async(id)=>{
+  const response = await axios
+  .patch(`${BACKEND_URL}/api/v1/confirmAppointment`,{id} ,{
+    headers: { authorization: localStorage.getItem("token") },
+  })
+  .then((res) => {
+    return {
+      message: res.data.message,
+      status: true,
+    };
+  })
+  .catch((E) => {
+    return {
+      message: E.response.data.message,
+      state: false,
+    };
+  });
+return response;
+}
+
+export const cancelAppointment = async(id)=>{
+  const response = await axios
+  .patch(`${BACKEND_URL}/api/v1/cancelAppointment`,{id} ,{
+    headers: { authorization: localStorage.getItem("token") },
+  })
+  .then((res) => {
+    return {
+      message: res.data.message,
+      status: true,
+    };
+  })
+  .catch((E) => {
+    return {
+      message: E.response.data.message,
+      state: false,
+    };
+  });
+return response;
+}
+
+export const getAllDoctors = async() =>{
+  const response = await axios
+  .get(`${BACKEND_URL}/api/v1/doctors` ,{
+    headers: { authorization: localStorage.getItem("token") },
+  })
+  .then((res) => {
+    return {
+      doctors:res.data.doctor,
+      message: res.data.message,
+      status: true,
+    };
+  })
+  .catch((E) => {
+    return {
+      message: E.response.data.message,
+      state: false,
+    };
+  });
+return response;
+}
