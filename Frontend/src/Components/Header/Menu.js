@@ -64,6 +64,8 @@ const Menu = () => {
                 Dashboard
               </a>
             </li>
+            {localStorage.getItem('role') === "patient" ? <> <li className="block lg:hidden px-4 py-2 hover:bg-gray-100  text-green-700"><a href="/store">Medicine Store</a></li>
+            <li className="block lg:hidden px-4 py-2 hover:bg-gray-100  text-green-700"><a href="/checkout">Cart</a></li> </>: ''}
           </ul>
           <div class="py-1">
             <button

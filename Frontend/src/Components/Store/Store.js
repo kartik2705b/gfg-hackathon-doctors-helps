@@ -21,6 +21,9 @@ const Store = () => {
   }, [page]);
 
   const handleAddToCart = async (product) => {
+    if(!localStorage.getItem("token")){
+      return toast.error("Login to add Items to cart")
+    }
     console.log("clicked");
     const response = await AddToCart(product, 1);
     if (response.status) {

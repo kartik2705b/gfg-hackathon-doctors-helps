@@ -34,7 +34,7 @@ const Header = () => {
             {role === "patient" && (
               <a
                 href="/store"
-                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36]"
+                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36] hidden lg:block"
               >
                 Medicine Store
               </a>
@@ -43,7 +43,7 @@ const Header = () => {
             {role === "patient" && (
               <a
                 href="/checkout"
-                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36]"
+                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36] hidden lg:block"
               >
                 Cart
               </a>

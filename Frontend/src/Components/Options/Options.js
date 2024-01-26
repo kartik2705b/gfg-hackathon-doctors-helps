@@ -191,7 +191,7 @@ const Options = (props) => {
                     margin: "auto 0",
                   }}
                 >
-                  Interview mode
+                  Prescription mode
                 </h3>
                 <AntSwitch
                   style={{
@@ -200,7 +200,7 @@ const Options = (props) => {
                   checked={showEditor}
                   onChange={() => {
                     message.info(
-                      `Switched to ${showEditor ? "normal" : "interview"} mode`
+                      `Switched to ${showEditor ? "normal" : "Prescription"} mode`
                     );
                     setShowEditor(!showEditor);
                   }}

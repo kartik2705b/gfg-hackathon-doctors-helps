@@ -45,9 +45,15 @@ const Hero = () => {
           </p>
           <button
           onClick={() => handleClick()}
-            class="inline-flex items-center justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
+            class="inline-flex items-center mr-4 justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
           >
             Find Your Doctor
+          </button>
+          <button
+          onClick={() => window.location.href = "/store"}
+            class="inline-flex items-center justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
+          >
+            Find Your Medicine
           </button>
         </div>
         <div class=" mt-6 md:mt-0 lg:col-span-5 lg:flex">

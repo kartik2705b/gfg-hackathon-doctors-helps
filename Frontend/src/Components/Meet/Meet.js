@@ -84,8 +84,8 @@ const Meet = (props) => {
   const downloadPdf = async () => {
     const delta = quill.getContents();
     const pdfAsBlob = await pdfExporter.generatePdf(delta);
-    message.success("Downloading your whiteboard");
-    saveAs(pdfAsBlob, `Merge-whiteboard.pdf`);
+    message.success("Downloading your prescription");
+    saveAs(pdfAsBlob, `Merge-prescription.pdf`);
   };
 
   if (loading) {
@@ -167,12 +167,12 @@ const Meet = (props) => {
               <div className="head">
                 <div className="head-title">
                   <img src={noteIcon} alt="" />
-                  <h3>Whiteboard</h3>
+                  <h3>Prescription</h3>
                 </div>
                 <button
                   className="download"
                   onClick={() => downloadPdf()}
-                  title="Download whiteboard"
+                  title="Download prescription"
                 >
                   <GetAppIcon />
                 </button>
