@@ -232,16 +232,16 @@ export const EmptyCart = async () => {
       }
     )
     .then((res) => {
-      return {status:true}
+      return { status: true };
       // setCartItems(res.data.user.CartItems);
     })
     .catch((e) => {
-      return {status:false}
+      return { status: false };
       // console.log(e.response.data.message);
     });
   return response;
 };
-export const createMedOrder = async (cartItems, address, paymentId ,total) => {
+export const createMedOrder = async (cartItems, address, paymentId, total) => {
   const response = await axios
     .post(
       `${BACKEND_URL}/api/v1/orders`,
@@ -255,17 +255,17 @@ export const createMedOrder = async (cartItems, address, paymentId ,total) => {
         headers: { authorization: localStorage.getItem("token") },
       }
     )
-    .then(async(res) => {
+    .then(async (res) => {
       // toast.success(res?.data?.message);
       await EmptyCart();
-      console.log(res.data)
-      return {status: true}
-      
+      console.log(res.data);
+      return { status: true };
+
       // console.log(res.data);
       // setShow(false)
     })
     .catch((e) => {
-      return { status : false}
+      return { status: false };
       // toast.error(e?.response?.data?.message);
       // console.log(e)
     });
@@ -283,13 +283,13 @@ export const IncreaseQty = async (productId) => {
     )
     .then((res) => {
       // console.log(res.data);
-      return { status: true}
+      return { status: true };
       // CallRequest();
     })
     .catch((e) => {
       // console.log(e);
-      console.log(e)
-      return { status : false}
+      console.log(e);
+      return { status: false };
       // toast.error(e.response.data.message);
     });
   return response;
@@ -306,12 +306,12 @@ export const DecreseQty = async (productId) => {
     )
     .then((res) => {
       // console.log(res.data);
-      return { status : true}
+      return { status: true };
       // CallRequest();
     })
     .catch((e) => {
       // console.log(e);
-      return { status : false}
+      return { status: false };
       // toast.error(e.response.data.message);
     });
   return response;
@@ -325,11 +325,11 @@ export const getCart = async () => {
     })
     .then((res) => {
       // console.log(res.data)
-      return {status: true , cartItems : res.data.CartItems}
+      return { status: true, cartItems: res.data.CartItems };
       // setCartItems(res.data.CartItems);
     })
     .catch((e) => {
-      return {status: false , message:e.response.data.message}
+      return { status: false, message: e.response.data.message };
       // toast.error(e.response.data.message);
     });
 
@@ -342,11 +342,11 @@ export const removeCartItems = async (productId) => {
       headers: { authorization: localStorage.getItem("token") },
     })
     .then((res) => {
-      return {status:true}
+      return { status: true };
     })
     .catch((e) => {
       console.log(e);
-      return{ status: false}
+      return { status: false };
       // toast.error(e.response.data.message);
     });
 
@@ -366,13 +366,13 @@ export const AddToCart = async (productDetail, qty) => {
       }
     )
     .then((res) => {
-      return {status: true , message: res.data.message}
+      return { status: true, message: res.data.message };
       // toast.success("Cart Item Removed");
       // console.log(res.data);
       // CallRequest();
     })
     .catch((e) => {
-      return {status : false , message : e.response.data.message}
+      return { status: false, message: e.response.data.message };
       // console.log(e);
       // toast.error(e.response.data.message);
     });
@@ -399,19 +399,43 @@ export const getProducts = async (page) => {
   return response;
 };
 
-export const getOrdersHistory = async(page) =>{
-  const response = await axios.get(`${BACKEND_URL}/api/v1/orders?page=${page}`, {
-    headers: { authorization: localStorage.getItem("token") } }).then((res)=>{
-    return{
-      message:res.data.message,
-      status:true,
-      orderHistory : res.data.orders
-    }
-  }).catch((E)=>{
-    return{
-      message:E.response.data.message,
-      state:false
-    }
-  })
+export const getOrdersHistory = async (page) => {
+  const response = await axios
+    .get(`${BACKEND_URL}/api/v1/orders?page=${page}`, {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        status: true,
+        orderHistory: res.data.orders,
+      };
+    })
+    .catch((E) => {
+      return {
+        message: E.response.data.message,
+        state: false,
+      };
+    });
   return response;
-}
+};
+
+export const getProductBySearch = async (payload) => {
+  const response = await axios
+    .get(`${BACKEND_URL}/api/v1/products/QuerySearch?searchQuery=${payload}`)
+    .then((res) => {
+      return {
+        status: true,
+        data: res.data.products,
+        message: "success",
+      };
+    })
+    .catch((e) => {
+      return {
+        status: false,
+        message: e.response.data.message,
+      };
+    });
+
+  return response;
+};
