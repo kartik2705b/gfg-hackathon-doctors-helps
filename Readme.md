@@ -1,4 +1,4 @@
-# Online Healthcare Platform
+# MY DOCTOR (Online Healthcare Platform)
 
 Welcome to our Online Healthcare Platform – an innovative solution that facilitates virtual doctor consultations and online prescription services.
 
