@@ -37,7 +37,7 @@ const Store = () => {
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {data?.user?.map((product , idx) => (
+          {data?.user?.map((product, idx) => (
             <div className="" key={idx}>
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
@@ -48,10 +48,7 @@ const Store = () => {
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
-                  <h3 className="text-sm text-gray-700">
-                    <span aria-hidden="true" className="absolute inset-0"></span>
-                    {product?.title}
-                  </h3>
+                  <h3 className="text-sm text-gray-700">{product?.title}</h3>
                   <p className="mt-1 text-sm text-gray-500">
                     {product?.description}
                   </p>
@@ -62,7 +59,7 @@ const Store = () => {
               </div>
               <button
                 className="text-white w-full font-xl bg-[#1F4D36] px-4 py-2 rounded"
-                onClick={()=> handleAddToCart(product)}
+                onClick={() => handleAddToCart(product)}
               >
                 Add to Cart
               </button>
