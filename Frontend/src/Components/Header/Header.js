@@ -34,7 +34,7 @@ const Header = () => {
               {role === "patient" && (
                 <a
                   href="/store"
-                  className="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded border border-green-900 hover:bg-greem-900 hover:text-white-700"
+                  className="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded border border-green-900 hover:bg-greem-900 hover:text-white-700 hidden lg:block"
                 >
                   Medicine
                 </a>
@@ -43,7 +43,7 @@ const Header = () => {
               {role === "patient" && (
                 <a
                   href="/checkout"
-                  className="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded border border-green-900 hover:bg-greem-900 hover:text-white-700"
+                  className="py-2.5 px-5 text-sm font-medium text-green-900 focus:outline-none rounded border border-green-900 hover:bg-greem-900 hover:text-white-700 hidden lg:block"
                 >
                   Cart
                 </a>
