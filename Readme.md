@@ -42,7 +42,14 @@ Welcome to our Online Healthcare Platform, a comprehensive solution that revolut
    ```bash
    git clone https://github.com/kartik2705b/gfg-hackathon-doctors-helps.git
    
-2. Run the commands:   
+2. Run the commands:
+   ```bash
+   cd Backend
+   npm i
+   npm run server
+   cd Frontend
+   npm i
+   npm run start 
 
 ## TechStack
 - React js
