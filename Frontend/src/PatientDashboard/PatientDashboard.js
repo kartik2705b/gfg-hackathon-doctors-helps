@@ -4,7 +4,7 @@ import { getOrdersHistory, getPatientHistory } from "../API/apis";
 
 const PatientDashboard = (props) => {
   const [menu, setMenu] = useState("orderhistory");
-  const [orderHistoryPage , setHistoryPage] = useState(1);
+  const [orderHistoryPage, setHistoryPage] = useState(1);
   const [patientHistory, setPatientHistory] = useState([]);
   const [patientOrderHistory, setPatientOrderHistory] = useState([]);
 
@@ -26,18 +26,18 @@ const PatientDashboard = (props) => {
     }
   }, []);
 
-  useEffect(async() => {
-    console.log('callaed')
+  useEffect(async () => {
+    console.log("callaed");
     if (menu === "orderhistory") {
       const orders = await getOrdersHistory(orderHistoryPage);
-      console.log('Orders' ,orders)
+      console.log("Orders", orders);
       if (orders.status) {
         setPatientOrderHistory(orders.orderHistory);
       } else {
         alert(orders.message);
       }
     }
-  }, [menu , orderHistoryPage]);
+  }, [menu, orderHistoryPage]);
 
   return (
     <>
@@ -124,7 +124,7 @@ const PatientDashboard = (props) => {
                         PaymentID
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Status  
+                        Status
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Address
@@ -132,42 +132,63 @@ const PatientDashboard = (props) => {
                       <th scope="col" class="px-6 py-3">
                         Total Amount
                       </th>
-                      <th scope="col" class="px-6 py-3">
+                      {/* <th scope="col" class="px-6 py-3">
                         Actions
-                      </th>
+                      </th> */}
                     </tr>
                   </thead>
                   <tbody>
-                    {patientOrderHistory
-                      ?.map((items) => (
-                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                          <th
-                            scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                             ORD{items?._id?.split("").slice(20, 24).join("")}
-                          </th>
-                          <td class="px-6 py-4">PAY{items?.paymentId?.split("").splice(0, 5).join("")}</td>
-                          <td class="px-6 py-4">{items?.status}</td>
-                          <td class="px-6 py-4">{items.shippingAddress.admin_area_2}</td>
-                          <td class="px-6 py-4">{items.totalPrice}.00</td>
-                          <td class="px-6 py-4">
+                    {patientOrderHistory?.map((items) => (
+                      <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <th
+                          scope="row"
+                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          ORD{items?._id?.split("").slice(20, 24).join("")}
+                        </th>
+                        <td class="px-6 py-4">
+                          PAY{items?.paymentId?.split("").splice(0, 5).join("")}
+                        </td>
+                        <td class="px-6 py-4">{items?.status}</td>
+                        <td class="px-6 py-4">
+                          {items.shippingAddress.admin_area_2}
+                        </td>
+                        <td class="px-6 py-4">{items.totalPrice}.00</td>
+                        {/* <td class="px-6 py-4">
                             <a
                               href="#"
                               class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                             >
                               View More
                             </a>
-                          </td>
-                        </tr>
-                      ))}
+                          </td> */}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
-              <div className="flex justify-center items-center text-bold text-2xl"> 
-              <button onClick={()=> orderHistoryPage > 1 ? setHistoryPage(orderHistoryPage - 1) : orderHistoryPage}>&lt;</button>
-              <div>{orderHistoryPage}</div>
-              <button onClick={()=> setHistoryPage(patientOrderHistory.length === 6 ? orderHistoryPage + 1 : orderHistoryPage)}>&gt;</button>
+              <div className="flex justify-center items-center text-bold text-2xl">
+                <button
+                  onClick={() =>
+                    orderHistoryPage > 1
+                      ? setHistoryPage(orderHistoryPage - 1)
+                      : orderHistoryPage
+                  }
+                >
+                  &lt;
+                </button>
+                <div>{orderHistoryPage}</div>
+                <button
+                  onClick={() =>
+                    setHistoryPage(
+                      patientOrderHistory.length === 6
+                        ? orderHistoryPage + 1
+                        : orderHistoryPage
+                    )
+                  }
+                >
+                  &gt;
+                </button>
               </div>
             </>
           )}

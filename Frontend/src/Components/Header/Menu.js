@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const Menu = () => {
   const [name, setName] = useState(null);
+  const [role, setRole] = useState("patient");
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
@@ -9,11 +10,12 @@ const Menu = () => {
     if (nameT) {
       setName(nameT);
     }
+    setRole(localStorage.getItem("role"));
   }, []);
 
   const handleLogOut = () => {
     localStorage.clear();
-    window.location.href="/"
+    window.location.href = "/";
   };
 
   const toggleDropdown = () => {
@@ -54,7 +56,9 @@ const Menu = () => {
           >
             <li>
               <a
-                href="#"
+                href={
+                  role === "patient" ? "/patientdashboard" : "/doctordashboard"
+                }
                 class="block px-4 py-2 hover:bg-gray-100  text-green-700"
               >
                 Dashboard

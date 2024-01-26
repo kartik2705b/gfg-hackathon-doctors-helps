@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png";
 
 import Menu from "./Menu";
 
 const Header = () => {
   const [token, setToken] = useState(null);
   const [state, setState] = useState(null);
+  const [role, setRole] = useState("patient");
 
   useEffect(() => {
-   
-    
-      console.log("token", localStorage.getItem('token'))
-      setToken(localStorage.getItem('token'))
-
-   
-    
+    console.log("token", localStorage.getItem("token"));
+    setToken(localStorage.getItem("token"));
+    setRole(localStorage.getItem("role"));
   }, []);
   return (
     <header>
@@ -27,11 +24,31 @@ const Header = () => {
       <nav className="bg-[#F2F4EA] border-gray-200 md:px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex justify-between items-center px-3 md:px-24">
           <a href="/" className="flex justify-between items-center">
-            <img src={logo} height={70} width={70}/>
-            <h1 className="px-4 text-2xl font-bold text-[#1F4D36]">My Doctor</h1>
+            <img src={logo} height={70} width={70} />
+            <h1 className="px-4 text-2xl font-bold text-[#1F4D36]">
+              My Doctor
+            </h1>
           </a>
 
           <div className="flex items-center">
+            {role === "patient" && (
+              <a
+                href="/store"
+                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36]"
+              >
+                Medicine Store
+              </a>
+            )}
+
+            {role === "patient" && (
+              <a
+                href="/checkout"
+                className="text-2xl border-green-700 px-4 py-2 mx-3 rounded-md shadow-lg font-bold text-[#1F4D36]"
+              >
+                Cart
+              </a>
+            )}
+
             {!token ? (
               <a
                 type="button"

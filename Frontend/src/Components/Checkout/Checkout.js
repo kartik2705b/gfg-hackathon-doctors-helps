@@ -13,7 +13,7 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const { toast } = useContext(ToastContext);
   const [total, setTotal] = useState(0);
-  const [showPayment , setShowPayment] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
@@ -39,13 +39,13 @@ const Checkout = () => {
       });
   };
 
-  const handleCreateOrder = async(address, paymentId) => {
-    const response = await createMedOrder(cartItems , address, paymentId , total);
-    if(response.status){
-      toast.success("Order Placed Success")
+  const handleCreateOrder = async (address, paymentId) => {
+    const response = await createMedOrder(cartItems, address, paymentId, total);
+    if (response.status) {
+      toast.success("Order Placed Success");
       handleGetCart();
-    }else{
-      toast.error("Order Failed")
+    } else {
+      toast.error("Order Failed");
     }
   };
 
@@ -53,14 +53,16 @@ const Checkout = () => {
   const onApprove = (data, actions) => {
     return actions.order.capture().then(async function (details) {
       const { payer } = details;
-     await handleCreateOrder(details.purchase_units[0].shipping.address, details.id);
+      await handleCreateOrder(
+        details.purchase_units[0].shipping.address,
+        details.id
+      );
       setSuccess(true);
     });
   };
 
   useEffect(() => {
     if (success) {
-
       setShowPayment(false);
     }
   }, [success]);
@@ -75,7 +77,6 @@ const Checkout = () => {
       toast.error(ErrorMessage);
     }
   }, [ErrorMessage]);
-
 
   const handleGetCart = async () => {
     const response = await getCart();
@@ -132,7 +133,7 @@ const Checkout = () => {
     setTotal(newTotal);
   };
   return (
-    <div className="h-screen bg-gray-100 pt-20">
+    <div className="h-screen bg-[#F2F4EA] pt-20">
       <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
@@ -222,26 +223,32 @@ const Checkout = () => {
               <p className="text-sm text-gray-700">including VAT</p>
             </div>
           </div>
-          <button onClick={()=> setShowPayment(true)} className="mt-6 mb-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-            Check out
+          <button
+            onClick={() => setShowPayment(true)}
+            className="mt-6 mb-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+          >
+            Checkout
           </button>
-          {showPayment ? ( <div className="w-full h-96 overflow-auto" >
-     
-     <PayPalScriptProvider options={{ "client-id": "Abi6kgW2MeNbq_7xibfLDcwAEhedLuEe2wXRbu9w2p1aGamcbo7V2rI1LfeCIpNgMMSEc4rBkwaMwgWq" }}>
-       <div className="text-center">
-      
-         
-           <PayPalButtons
-             style={{ layout: "vertical" }}
-             createOrder={createOrder}
-             onApprove={onApprove}
-           />
-       
-       </div>
-     </PayPalScriptProvider>
- 
-   </div>):<></> }
-
+          {showPayment ? (
+            <div className="w-full h-96 overflow-auto">
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "Abi6kgW2MeNbq_7xibfLDcwAEhedLuEe2wXRbu9w2p1aGamcbo7V2rI1LfeCIpNgMMSEc4rBkwaMwgWq",
+                }}
+              >
+                <div className="text-center">
+                  <PayPalButtons
+                    style={{ layout: "vertical" }}
+                    createOrder={createOrder}
+                    onApprove={onApprove}
+                  />
+                </div>
+              </PayPalScriptProvider>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
