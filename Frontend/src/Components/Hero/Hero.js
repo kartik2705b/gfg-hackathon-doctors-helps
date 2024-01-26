@@ -50,6 +50,12 @@ const Hero = () => {
             Find Your Doctor
           </button>
           <button
+          onClick={() => window.location.href = "/symptomchecker"}
+            class="inline-flex items-center mr-4 justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
+          >
+            Diagnose Your Symptoms Now
+          </button>
+          <button
           onClick={() => window.location.href = "/store"}
             class="inline-flex items-center justify-center px-5 py-3  font-medium text-center  border border-gray-300 rounded-lg text-white bg-green-900 hover:text-white"
           >
