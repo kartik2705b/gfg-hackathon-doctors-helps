@@ -1,6 +1,7 @@
 # MY DOCTOR (Online Healthcare Platform)
 
-Welcome to our Online Healthcare Platform – an innovative solution that facilitates virtual doctor consultations and online prescription services.
+
+Our innovative project revolutionizes healthcare by providing a platform for online doctor consultations and convenient access to prescribed medicines. Through seamless virtual interactions, patients can consult with qualified healthcare professionals, receive personalized medical advice, and conveniently order their prescribed medications online, ensuring efficient and accessible healthcare solutions.
 
 ## Table of Contents
 
