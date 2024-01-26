@@ -15,7 +15,7 @@ Our innovative project revolutionizes healthcare by providing a platform for onl
 
 ## Introduction
 
-Our Online Healthcare Platform utilizes React.js and npm to create a seamless experience for users seeking medical advice and prescription medications online. This project aims to revolutionize healthcare accessibility by providing a user-friendly interface for virtual consultations and streamlined pharmacy services.
+Welcome to our Online Healthcare Platform, a comprehensive solution that revolutionizes healthcare accessibility. Our project seamlessly integrates virtual doctor consultations, online prescription services, and now, an advanced MRI scanner viewer. This innovative feature empowers healthcare professionals to review and interpret MRI reports, enhancing the depth and effectiveness of online consultations. Together, we're redefining the future of healthcare by providing a holistic and technologically advanced platform for users and healthcare providers alike.
 
 ## Features
 
