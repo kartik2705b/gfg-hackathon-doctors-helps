@@ -25,7 +25,7 @@ Welcome to our Online Healthcare Platform, a comprehensive solution that revolut
 - **User-Friendly Interface:** Intuitive design for a smooth and hassle-free user experience.
 - **Security:** Ensure the privacy and security of user data and medical information.
 - **MRI viewer for Doctors:** This feature makes the doctor work easy by viewing the MRI online rather than cheking throw offline.MRI Viewer is a high performance web tool for advanced visualization (both in 2D and 3D modes) medical volumetric data, provided in popular file formats: DICOM, NIfTI, KTX™, HDR.
-- **Symptoms checker:** we have gave the option for the patient to check their possible dieses by giving their symptoms. 
+- **Symptoms checker:** we have gave the option for the patient to check their possible diseases by giving their symptoms. 
 
 
 ## Requirements
