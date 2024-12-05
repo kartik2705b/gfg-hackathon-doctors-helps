@@ -62,7 +62,11 @@ Welcome to our Online Healthcare Platform, a comprehensive solution that revolut
 - Node mailer (sending the mail after sign up)
 
 
-
+## Contributors 
+@jagadeesh N
+@Kartik Bhatia
+@Deepak Rawat
+@Ashwin Singh
 
 
 
